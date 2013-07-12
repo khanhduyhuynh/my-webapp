@@ -23,6 +23,7 @@
 	<bean id="TransactionDAO" class="com.app.persistence.dao.TransactionDAO">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
+        
 	
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />	

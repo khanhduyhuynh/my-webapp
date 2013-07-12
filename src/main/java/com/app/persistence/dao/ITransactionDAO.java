@@ -4,19 +4,21 @@
  */
 package com.app.persistence.dao;
 
-import com.app.model.User;
+import java.util.HashMap;
 import java.util.List;
-import org.hibernate.SessionFactory;
+import java.util.Map;
 
 /**
  *
  * @author duy
  */
 public interface ITransactionDAO<T> {
-    public SessionFactory getSessionFactory();
+
     public boolean persistData(Object data);
     public boolean deleteData(Object data);
     public boolean updateData(Object data);
-
-    public User findDataByUsername(String username);
+    
+    public List<T> findAll(String strQuery);
+    public T findByCondition(String strQuery, HashMap<String, Object> parameters);
+    
 }

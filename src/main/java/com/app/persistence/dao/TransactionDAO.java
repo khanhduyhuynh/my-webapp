@@ -1,8 +1,10 @@
 
 package com.app.persistence.dao;
 
-import com.app.model.User;
-import javax.persistence.NoResultException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,20 +62,31 @@ public class TransactionDAO<T> implements ITransactionDAO {
         return check;
     }
     
-    public User findDataByUsername(String username) {
-	User user = null;
-        try{
-            Query query = sessionFactory.getCurrentSession().createQuery("select u from User u where u.username = :username")
-                    .setParameter("username", username);
+    public List<T> findAll(String strQuery) {
+        return sessionFactory.getCurrentSession().createQuery(strQuery).list();
+    }
+    
+    public T findByCondition(String strQuery, HashMap parameters) {
+        T result = null;
+        try {
+            Query query = sessionFactory.getCurrentSession().createQuery(strQuery);
+            // Method that will populate parameters if they are passed not null and empty
+            if (parameters != null && !parameters.isEmpty()) {
+                populateQueryParameters(query, parameters);
+            }
+            result = (T)query.uniqueResult();
+        }
+        catch(Exception e) {
             
-            user = (User)query.uniqueResult();
         }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-	return user;
+	return result;
     }
 
+    private void populateQueryParameters(Query query, Map<String, Object> parameters) {
+        for (Entry<String, Object> entry : parameters.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+    }
 
     
     

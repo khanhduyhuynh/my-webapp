@@ -4,11 +4,8 @@
  */
 package com.app.controller;
 
-import com.app.model.Admin;
 import com.app.model.User;
 import com.app.persistence.service.ILoginServices;
-import com.app.persistence.service.ITransactionServices;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -28,12 +25,10 @@ public class LoginController {
     private String password;
     
     public String validateLogin() {
-
         User user = loginServices.validateLogin(username, password);
 	if(user != null){
            return "success";   
-	}
-        
+	}     
 	return null;
     }
    

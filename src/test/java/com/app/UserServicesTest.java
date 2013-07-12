@@ -15,6 +15,8 @@ import com.app.model.ItemSupplierKey;
 import com.app.model.Profile;
 import com.app.model.ShippingAddress;
 import com.app.model.Supplier;
+import com.app.model.User;
+import com.app.persistence.service.ILoginServices;
 import com.app.persistence.service.ITransactionServices;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -31,6 +33,9 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
     
    @Autowired
    private ITransactionServices transactionServices;
+   
+   @Autowired
+   private ILoginServices loginServices;
     /**
      * Test of addUserManagement method, of class TransactionServices.
      */
@@ -83,5 +88,12 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         //String checkValidate = login.isValidLogin("admin", "admin");
         //Assert.assertEquals(null, checkValidate);
 
+    }
+    
+    @Test
+    public void testLogin()
+    {
+        User user = loginServices.validateLogin("admin", "admin");
+        Assert.assertNotNull(user);
     }
 }
