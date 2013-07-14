@@ -13,21 +13,14 @@ import org.springframework.stereotype.Repository;
  *
  * @author duy
  */
-@Repository
-public class QueryList {
+
+public class QueryList implements IQueryList{
     private HashMap hm = new HashMap();
     
     public QueryList() {
         hm.put("findAllUsers", "select u from User u");
         hm.put("findUserByUsername", "select u from User u where u.username = :username");
-    }
-
-    public HashMap getHm() {
-        return hm;
-    }
-
-    public void setHm(HashMap hm) {
-        this.hm = hm;
+        hm.put("findAllAdmins", "select a from Admin a");
     }
     
     public String getQueryStr(String strKey) {

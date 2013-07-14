@@ -6,7 +6,6 @@ package com.app.persistence.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *

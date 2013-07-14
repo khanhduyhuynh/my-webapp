@@ -5,11 +5,14 @@
 package com.app.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,9 +27,12 @@ public class Supplier extends User implements Serializable {
     // =             Attributes             =
     // ======================================
     
-    @OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "profile_fk", nullable = false)
     private Profile profile;
+    
+    @OneToMany(mappedBy = "supplier")
+    private List<Customer> customers = new ArrayList<Customer>();
     
     // ======================================
     // =            Constructors            =
@@ -54,6 +60,14 @@ public class Supplier extends User implements Serializable {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
     
 }

@@ -11,14 +11,20 @@
         <el-resolver>
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
     	</el-resolver>
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>bundle</var>
+	</resource-bundle>
+	<message-bundle>messages</message-bundle>
     </application>
     
     <!-- configuration of navigation rules -->
  <navigation-rule>
-     <from-view-id>/login.xhtml</from-view-id>
+     <from-view-id>/pages/public/login.xhtml</from-view-id>
      <navigation-case>
          <from-outcome>success</from-outcome>
-            <to-view-id>/home.xhtml</to-view-id>
+            <to-view-id>/pages/protected/home.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
     </navigation-rule>
 	

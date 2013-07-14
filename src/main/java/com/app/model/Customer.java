@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,7 +33,7 @@ public class Customer extends User implements Serializable {
     @JoinColumn(name = "shippingAddress_fk", nullable = false)
     private ShippingAddress shippingAddress;
     
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "supplier_fk", nullable = false)
     private Supplier supplier;
 
