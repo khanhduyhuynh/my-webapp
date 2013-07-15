@@ -19,8 +19,11 @@ public class QueryList implements IQueryList{
     
     public QueryList() {
         hm.put("findAllUsers", "select u from User u");
-        hm.put("findUserByUsername", "select u from User u where u.username = :username");
         hm.put("findAllAdmins", "select a from Admin a");
+        hm.put("findAllSuppliers", "select s from Supplier s");
+        
+        hm.put("findUserByUsername", "select u from User u where u.username = :username");
+        hm.put("findCustomersBySupplier", "select c from Customer c where c.supplier.username = :supplier");
     }
     
     public String getQueryStr(String strKey) {

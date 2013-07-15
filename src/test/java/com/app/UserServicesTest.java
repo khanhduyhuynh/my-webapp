@@ -9,12 +9,9 @@ import com.app.model.Admin;
 import com.app.model.BillingAddress;
 import com.app.model.Customer;
 import com.app.model.Item;
-import com.app.model.ItemSupplier;
-import com.app.model.ItemSupplierKey;
 import com.app.model.Profile;
 import com.app.model.ShippingAddress;
 import com.app.model.Supplier;
-import com.app.persistence.service.ILoginServices;
 import com.app.persistence.service.IQueryList;
 import com.app.persistence.service.ITransactionServices;
 import java.util.HashMap;
@@ -51,7 +48,7 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         boolean checkAddress = transactionServices.persistData(address);
         Assert.assertEquals(true, checkAddress);
         
-        Profile profile = new Profile("ABC Company", "ABC Company", "0406051784", "abccompany@gmail.com");
+        Profile profile = new Profile("ABC1 Company", "ABC1 Company", "0406051784", "abccompany@gmail.com");
         profile.setAddress(address);
         boolean checkProfile = transactionServices.persistData(profile);
         Assert.assertEquals(true, checkProfile);
@@ -80,10 +77,9 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         boolean checkItem = transactionServices.persistData(item);
         Assert.assertEquals(true, checkItem);
         
-        ItemSupplierKey itemSupplierKey = new ItemSupplierKey(item, supplier);
-        ItemSupplier itemSupplier = new ItemSupplier(itemSupplierKey);
-        boolean checkItemSupplier = transactionServices.persistData(itemSupplier);
-        Assert.assertEquals(true, checkItemSupplier);
+        
+        item.getSuppliers().add(supplier);
+        supplier.getItems().add(item);
         
         
         String strQuery = queryList.getQueryStr("findUserByUsername");
@@ -91,7 +87,7 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
        hm.put("username", "xyz");
        Customer c = (Customer)transactionServices.findByCondition(strQuery, hm);
        String s = c.getSupplier().getProfile().getBusinessName();
-       Assert.assertEquals("ABC Company", s);
+       Assert.assertEquals("ABC1 Company", s);
        
        
        Customer customer1 = new Customer("xyz1", "xyz1", "Tom", "Hank", "0490986734", "xyz@gmail.com");

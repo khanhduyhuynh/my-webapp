@@ -30,7 +30,12 @@ public class LoginFilter extends AbstractFilter implements Filter {
             allowedURIs = new ArrayList<String>();
             allowedURIs.add(fc.getInitParameter("loginActionURI"));
             allowedURIs.add("/NewProject/pages/public/accessDenied.xhtml");
-            
+            //allowedURIs.add("/NewProject/pages/public/testPage.xhtml");
+            //allowedURIs.add("/NewProject/javax.faces.resource/test.css.xhtml");
+			//allowedURIs.add("/NewProject/javax.faces.resource/theme.css.xhtml");
+			//allowedURIs.add("/NewProject/javax.faces.resource/primefaces.js.xhtml");
+			//allowedURIs.add("/NewProject/javax.faces.resource/primefaces.css.xhtml");
+			//allowedURIs.add("/NewProject/javax.faces.resource/jquery/jquery.js.xhtml");
         }
     }
     
@@ -39,7 +44,7 @@ public class LoginFilter extends AbstractFilter implements Filter {
 	HttpServletRequest req = (HttpServletRequest) request;
 	HttpSession session = req.getSession();
 
-	if (session.isNew() && !allowedURIs.contains(req.getRequestURI())) {
+	if (session.isNew()) {
             doLogin(request, response, req);
             return;
         }

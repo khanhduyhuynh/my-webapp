@@ -5,11 +5,16 @@
 package com.app.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +38,14 @@ public class Item implements Serializable {
     private String description;
     @Column(nullable = false)
     protected int unit;
+    
+    @ManyToMany
+    @JoinTable(name = "ItemSupplier_table",
+            joinColumns=@JoinColumn(name = "item_id"),
+            inverseJoinColumns=@JoinColumn(name = "supplier_id")
+    )
+            
+    private List<Supplier> suppliers = new ArrayList<Supplier>();
 
     // ======================================
     // =            Constructors            =
@@ -87,4 +100,14 @@ public class Item implements Serializable {
     public void setUnit(int unit) {
         this.unit = unit;
     }
+
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
+    
+    
 }

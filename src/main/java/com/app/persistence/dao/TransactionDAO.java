@@ -66,6 +66,22 @@ public class TransactionDAO<T> implements ITransactionDAO {
         return sessionFactory.getCurrentSession().createQuery(strQuery).list();
     }
     
+    public List<T> findAllByCondition(String strQuery, HashMap parameters) {
+        List<T> result = null;
+        try {
+            Query query = sessionFactory.getCurrentSession().createQuery(strQuery);
+            // Method that will populate parameters if they are passed not null and empty
+            if (parameters != null && !parameters.isEmpty()) {
+                populateQueryParameters(query, parameters);
+            }
+            result = query.list();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+	return result;
+    }
+    
     public T findByCondition(String strQuery, HashMap parameters) {
         T result = null;
         try {
@@ -77,7 +93,7 @@ public class TransactionDAO<T> implements ITransactionDAO {
             result = (T)query.uniqueResult();
         }
         catch(Exception e) {
-            
+            e.printStackTrace();
         }
 	return result;
     }

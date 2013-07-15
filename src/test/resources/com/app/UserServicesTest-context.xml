@@ -50,7 +50,6 @@
                             <value>com.app.model.BillingAddress</value>
                             <value>com.app.model.ShippingAddress</value>
                             <value>com.app.model.Item</value>
-                            <value>com.app.model.ItemSupplier</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

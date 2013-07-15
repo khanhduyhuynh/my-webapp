@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,19 +28,22 @@ public class Supplier extends User implements Serializable {
     // =             Attributes             =
     // ======================================
     
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "profile_fk", nullable = false)
     private Profile profile;
     
-    @OneToMany(mappedBy = "supplier")
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE)
     private List<Customer> customers = new ArrayList<Customer>();
+    
+    @ManyToMany(mappedBy = "suppliers")
+    private List<Item> items = new ArrayList<Item>();
     
     // ======================================
     // =            Constructors            =
     // ======================================
     
     public Supplier() {
-        
+        super.roleName = Role.SUPPLIER;
     }
     
     public Supplier(String username, String password, String firstName, String lastName, String phone, String email) {
@@ -69,5 +73,15 @@ public class Supplier extends User implements Serializable {
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+    
+    
     
 }

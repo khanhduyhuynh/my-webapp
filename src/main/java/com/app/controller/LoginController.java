@@ -42,7 +42,11 @@ public class LoginController extends AbstractController {
            FacesContext context = FacesContext.getCurrentInstance();
            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
            request.getSession().setAttribute("user", user);
-           return "success";   
+           
+           if(user.isAdmin()) {
+               return "admin_forward";
+           }
+           return "supplier_forward";   
 	}
         displayErrorMessageToUser("Check your email/password");
 	return null;

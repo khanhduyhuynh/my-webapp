@@ -17,5 +17,6 @@ public interface ITransactionServices<T> {
     public boolean updateData(T data);
     
     public List<T> findAll(String strQuery);
+    public List<T> findAllByCondition(String strQuery, HashMap parameters);
     public T findByCondition(String strQuery, HashMap<String, Object> parameters);
 }

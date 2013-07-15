@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <p:dialog widgetVar="supplierCreateDialogWidget"
+	id="dogCreateDialogId" height="600" width="500" modal="true"
+	closable="true" draggable="false" resizable="false">
+	<h:form id="supplierCreateDialogForm" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputText value="Username:" />
+                <h:inputText value="#{supplierController.supplier.username}" required="true" label="Username" >
+			<f:validateLength minimum="5" />
+		</h:inputText>
+                
+		<h:outputText value="Password:" />
+                <h:inputSecret id="password" value="#{supplierController.supplier.password}" required="true" label="Password" />
+		
+                <h:outputLabel value="First Name:" />
+                <h:inputText value="#{supplierController.supplier.firstName}" required="true" label="First Name" />
+                
+                <h:outputLabel value="Last Name:" />
+                <h:inputText value="#{supplierController.supplier.lastName}" required="true" label="Last Name" />
+                
+                <h:outputLabel value="Phone:" />
+                <h:inputText value="#{supplierController.supplier.phone}" required="true" label="Phone" />
+                
+                <h:outputLabel value="Email:" />
+                <h:inputText value="#{supplierController.supplier.email}" required="true" label="Email" />
+                
+                <h:outputLabel value="Buusiness Name:" />
+                <h:inputText value="#{supplierController.profile.businessName}" required="true" label="Business Name" />
+                
+                <h:outputLabel value="Trading Name:" />
+                <h:inputText value="#{supplierController.profile.tradingName}" required="true" label="Trading Name" />
+                
+                <h:outputLabel value="Business Phone:" />
+                <h:inputText value="#{supplierController.profile.businessPhone}" required="true" label="Business Phone" />
+                
+                <h:outputLabel value="Business Email:" />
+                <h:inputText value="#{supplierController.profile.businessEmail}" required="true" label="Business Email" />
+                
+                <h:outputLabel value="Street :"/>
+                <h:inputText value="#{supplierController.address.street}" required="true" label="Street" />
+                            
+                <h:outputLabel value="Suburb :"/>
+                <h:inputText value="#{supplierController.address.suburb}" required="true" label="Suburb" />
+                            
+                <h:outputLabel value="State  :"/>
+                <h:inputText value="#{supplierController.address.state}" required="true" label="State" />
+                      
+                <h:outputLabel value="Post Code :"/>
+                <h:inputText value="#{supplierController.address.postCode}" required="true" label="Post Code" />
+                
+		<p:commandButton value="#{bundle.create}" icon="ui-icon-plus"
+                    action="#{supplierController.createSupplier()}"
+                    update=":messageGrowl :suppliersForm:suppliersTable"
+                    oncomplete="closeDialogIfSucess(xhr, status, args, supplierCreateDialogWidget, 'supplierCreateDialogId')" />
+                <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{supplierController.resetSupplier()}"
+                    onclick="supplierCreateDialogWidget.hide();" type="button" />
+            </h:panelGrid>
+	</h:form>
+    </p:dialog>
+</h:body>
+</html>

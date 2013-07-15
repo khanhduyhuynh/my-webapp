@@ -38,7 +38,7 @@ public class Profile implements Serializable {
     @Column(nullable = false)
     private String businessEmail;
     
-    @OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.EAGER, cascade= CascadeType.REMOVE)
     @JoinColumn(name = "address_fk", nullable = false)
     private Address address;
     

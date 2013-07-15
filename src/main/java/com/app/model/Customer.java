@@ -25,11 +25,11 @@ public class Customer extends User implements Serializable {
     // =             Attributes             =
     // ======================================
     
-    @OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.EAGER, cascade= CascadeType.REMOVE)
     @JoinColumn(name = "billingAddress_fk", nullable = false)
     private BillingAddress billingAddress;
     
-    @OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.EAGER, cascade= CascadeType.REMOVE)
     @JoinColumn(name = "shippingAddress_fk", nullable = false)
     private ShippingAddress shippingAddress;
     

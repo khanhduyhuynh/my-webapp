@@ -30,7 +30,7 @@ public class AdminPagesFilter extends AbstractFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
 	User user = (User) req.getSession(true).getAttribute("user");
 
-	if (!user.isSupplier()) {
+	if (!user.isAdmin()) {
             accessDenied(request, response, req);
             return;
 	}

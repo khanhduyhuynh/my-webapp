@@ -61,7 +61,7 @@
     </servlet-mapping>
     
     <!-- Filters -->
-    <filter>
+    <!--<filter>
 	<filter-name>LoginFilter</filter-name>
 	<filter-class>com.app.filter.LoginFilter</filter-class>
         <init-param>
@@ -91,5 +91,6 @@
 	<filter-name>SupplierPagesFilter</filter-name>
 	<url-pattern>/pages/protected/supplier/*</url-pattern>
     </filter-mapping>
-
+    
+-->
 </web-app>
