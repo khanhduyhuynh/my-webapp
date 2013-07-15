@@ -1,11 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html" 
-        xmlns:f="http://java.sun.com/jsf/core" 
         xmlns:p="http://primefaces.org/ui">
 <h:body>
-    <p:dialog widgetVar="supplierDeleteDialogWidget" id="supplierDeleteDialogId" height="150" width="500" modal="true"
+    <p:dialog widgetVar="supplierDeleteDialogWidget" id="supplierDeleteDialogId" height="150" width="400" modal="true"
         closable="true" draggable="false" resizable="false">
 	<h:form id="supplierDeleteDialogForm" prependId="false">
             #{bundle.deleteRecord}: <h:outputText value="#{supplierController.supplier.username}?" /><br/><br/>

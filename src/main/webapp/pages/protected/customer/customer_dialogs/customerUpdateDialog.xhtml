@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <p:dialog widgetVar="customerUpdateDialogWidget"
+        id="customerUpdateDialogId" height="300" width="400" modal="true"
+	closable="true" draggable="false" resizable="false">
+	<h:form id="customerUpdateDialogForm" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputText value="First Name" />
+                <h:inputText value="#{customerController.customer.firstName}" required="true" label="First Name" />
+                
+		<h:outputText value="Last Name" />
+                <h:inputText value="#{customerController.customer.lastName}" required="true" label="Last Name" />
+                
+                <h:outputText value="Billing Post Code" />
+                <h:inputText value="#{customerController.billingAddress.postCode}" required="true" label="Billing Post Code" />
+                
+                <h:outputText value="Shipping Post Code" />
+                <h:inputText value="#{customerController.shippingAddress.postCode}" required="true" label="Shipping Post Code" />
+                
+		<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
+                    action="#{customerController.updateCustomer()}"
+                    update=":messageGrowl :customersForm:customersTable"
+                    oncomplete="closeDialogIfSucess(xhr, status, args, customerUpdateDialogWidget, 'customerUpdateDialogId')" />
+                <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{customerController.resetCustomer()}"
+                    onclick="customerUpdateDialogWidget.hide();" type="button" />
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

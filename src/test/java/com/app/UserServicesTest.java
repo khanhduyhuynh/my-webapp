@@ -14,7 +14,9 @@ import com.app.model.ShippingAddress;
 import com.app.model.Supplier;
 import com.app.persistence.service.IQueryList;
 import com.app.persistence.service.ITransactionServices;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
      */
     @Test
     public void testPersistUser() {
-        
+     /*   
         Admin admin = new Admin("admin1", "admin1", "John", "Lee", "0987876545", "admin@gmail.com");
         boolean checkAdmin = transactionServices.persistData(admin);
         Assert.assertEquals(true, checkAdmin);
@@ -72,12 +74,31 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         customer.setSupplier(supplier);
         boolean checkCustomer = transactionServices.persistData(customer);
         Assert.assertEquals(true, checkCustomer);
+    */    
+        Address address = new Address("2 Surrey St", "Marrickville", "2204", "NSW");
+        boolean checkAddress = transactionServices.persistData(address);
+        Assert.assertEquals(true, checkAddress);
         
-        Item item = new Item("IPhone5", "This is the lastest model", 5);
+        Profile profile = new Profile("ABC1 Company", "ABC1 Company", "0406051784", "abccompany@gmail.com");
+        profile.setAddress(address);
+        boolean checkProfile = transactionServices.persistData(profile);
+        Assert.assertEquals(true, checkProfile);
+        
+        Supplier supplier = new Supplier("ABC", "abc", "Frank", "Terry", "7666776677", "abc@gmail.com");
+        supplier.setProfile(profile);
+        boolean checkSupplier = transactionServices.persistData(supplier);
+        Assert.assertEquals(true, checkSupplier);
+        
+        Item item = new Item("IPhone5", "This is the lastest model");
+        //List<Supplier> s = new ArrayList<Supplier>();
+        //s.add(supplier);
+        item.getSuppliers().add(supplier);
+        //supplier.getItems().add(item);
+        //item.setSuppliers(s);
         boolean checkItem = transactionServices.persistData(item);
         Assert.assertEquals(true, checkItem);
         
-        
+      /*  
         item.getSuppliers().add(supplier);
         supplier.getItems().add(item);
         
@@ -99,7 +120,7 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
        
        int i = supplier.getCustomers().size();
        Assert.assertEquals(2, i);
-       
+       */
     }
    
 }

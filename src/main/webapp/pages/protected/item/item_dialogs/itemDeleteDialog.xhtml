@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+        xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <p:dialog widgetVar="itemDeleteDialogWidget" id="itemDeleteDialogId" height="150" width="400" modal="true"
+        closable="true" draggable="false" resizable="false">
+	<h:form id="itemDeleteDialogForm" prependId="false">
+            #{bundle.deleteRecord}: <h:outputText value="#{itemController.item.name}?" /><br/><br/>
+
+            <p:commandButton value="#{bundle.delete}" icon="ui-icon-plus" action="#{itemController.deleteItem()}"
+                update=":messageGrowl :itemsForm:itemsTable"
+		oncomplete="closeDialogIfSucess(xhr, status, args, itemDeleteDialogWidget, 'itemDeleteDialogId')" />
+            <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{itemController.resetItem()}"
+		onclick="itemDeleteDialogWidget.hide();" type="button" />
+	</h:form>
+    </p:dialog>
+</h:body>
+</html>

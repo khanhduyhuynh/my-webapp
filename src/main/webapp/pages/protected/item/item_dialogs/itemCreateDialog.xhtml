@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <p:dialog widgetVar="itemCreateDialogWidget"
+	id="itemCreateDialogId" height="600" width="400" modal="true"
+	closable="true" draggable="false" resizable="false">
+	<h:form id="itemCreateDialogForm" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputText value="Name:" />
+                <h:inputText value="#{itemController.item.name}" required="true" label="Name" >
+			<f:validateLength minimum="5" />
+		</h:inputText>
+                
+                <h:outputLabel value="Description:" />
+                <h:inputTextarea value="#{itemController.item.description}" required="true" label="Description" />
+
+		<p:commandButton value="#{bundle.create}" icon="ui-icon-plus"
+                    action="#{itemController.createItem()}"
+                    update=":messageGrowl :itemsForm:itemsTable"
+                    oncomplete="closeDialogIfSucess(xhr, status, args, itemCreateDialogWidget, 'itemCreateDialogId')" />
+                <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{itemController.resetItem()}"
+                    onclick="itemCreateDialogWidget.hide();" type="button" />
+            </h:panelGrid>
+	</h:form>
+    </p:dialog>
+</h:body>
+</html>

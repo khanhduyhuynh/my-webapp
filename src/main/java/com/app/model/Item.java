@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -36,15 +37,12 @@ public class Item implements Serializable {
     @Column(nullable = false)
     @Lob
     private String description;
-    @Column(nullable = false)
-    protected int unit;
     
     @ManyToMany
     @JoinTable(name = "ItemSupplier_table",
             joinColumns=@JoinColumn(name = "item_id"),
             inverseJoinColumns=@JoinColumn(name = "supplier_id")
-    )
-            
+    )       
     private List<Supplier> suppliers = new ArrayList<Supplier>();
 
     // ======================================
@@ -57,13 +55,11 @@ public class Item implements Serializable {
     public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        this.unit = 0;
     }
     
     public Item(String name, String description, int unit) {
         this.name = name;
         this.description = description;
-        this.unit = unit;
     }
     
     // ======================================
@@ -91,14 +87,6 @@ public class Item implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getUnit() {
-        return unit;
-    }
-
-    public void setUnit(int unit) {
-        this.unit = unit;
     }
 
     public List<Supplier> getSuppliers() {

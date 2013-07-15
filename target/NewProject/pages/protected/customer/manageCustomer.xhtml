@@ -15,21 +15,20 @@
                         <f:facet name="header">
                             <h:outputText value="Username" />
 			</f:facet>
-
                         <h:outputText value="#{customer.username}" />
                     </p:column>
+                    
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Billing Post Code" />
 			</f:facet>
-
                         <h:outputText value="#{customer.billingAddress.postCode}" />
                     </p:column>
+                    
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Shipping Post Code" />
 			</f:facet>
-
                         <h:outputText value="#{customer.shippingAddress.postCode}" />
                     </p:column>
 
@@ -54,10 +53,10 @@
                                  actionListener="#{customerController.resetCustomer()}" onclick="customerCreateDialogWidget.show();" />
             </h:form>
 
-            <ui:include src="/pages/protected/supplier/customer_dialogs/customerCreateDialog.xhtml" />
-            <ui:include src="/pages/protected/supplier/customer_dialogs/customerDetailDialog.xhtml" />
-            <ui:include src="/pages/protected/supplier/customer_dialogs/customerUpdateDialog.xhtml" />
-            <ui:include src="/pages/protected/supplier/customer_dialogs/customerDeleteDialog.xhtml" />
+            <ui:include src="/pages/protected/customer/customer_dialogs/customerCreateDialog.xhtml" />
+            <ui:include src="/pages/protected/customer/customer_dialogs/customerDetailDialog.xhtml" />
+            <ui:include src="/pages/protected/customer/customer_dialogs/customerUpdateDialog.xhtml" />
+            <ui:include src="/pages/protected/customer/customer_dialogs/customerDeleteDialog.xhtml" />
 	</ui:define>	
     </ui:composition>
 </h:body>

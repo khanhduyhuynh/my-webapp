@@ -46,7 +46,10 @@ public class LoginController extends AbstractController {
            if(user.isAdmin()) {
                return "admin_forward";
            }
-           return "supplier_forward";   
+           if(user.isSupplier()) {
+               return "supplier_forward";
+           }
+           return "";
 	}
         displayErrorMessageToUser("Check your email/password");
 	return null;

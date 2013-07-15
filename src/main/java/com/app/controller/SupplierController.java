@@ -51,8 +51,8 @@ public class SupplierController extends AbstractController {
 
                 closeDialog();
                 displayInfoMessageToUser("Created With Success");
-                loadSuppliers();
                 resetSupplier();
+                loadSuppliers();
             }
             catch(Exception e) {
                 keepDialogOpen();

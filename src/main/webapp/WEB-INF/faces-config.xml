@@ -23,12 +23,12 @@
     <from-view-id>/pages/public/login.xhtml</from-view-id>
     <navigation-case>
         <from-outcome>admin_forward</from-outcome>
-        <to-view-id>/pages/protected/admin/manageSupplier.xhtml</to-view-id>
+        <to-view-id>/pages/protected/supplier/manageSupplier.xhtml</to-view-id>
         <redirect />
     </navigation-case>
     <navigation-case>
         <from-outcome>supplier_forward</from-outcome>
-        <to-view-id>/pages/protected/supplier/manageCustomer.xhtml</to-view-id>
+        <to-view-id>/pages/protected/customer/manageCustomer.xhtml</to-view-id>
         <redirect />
     </navigation-case>
     </navigation-rule>

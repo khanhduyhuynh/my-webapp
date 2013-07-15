@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+        xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <p:dialog widgetVar="supplierDetailDialogWidget" id="supplierDetailDialogId" height="600" width="400" modal="true"
+	closable="true" draggable="false" resizable="false">
+	<h:form id="supplierDetailDialogForm" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputText value="Username:" />
+                <h:outputText value="#{supplierController.supplier.username}" />
+		
+                <h:outputLabel value="First Name:" />
+                <h:outputText value="#{supplierController.supplier.firstName}" />
+                
+                <h:outputLabel value="Last Name:" />
+                <h:outputText value="#{supplierController.supplier.lastName}" />
+                
+                <h:outputLabel value="Phone:" />
+                <h:outputText value="#{supplierController.supplier.phone}" />
+                
+                <h:outputLabel value="Email:" />
+                <h:outputText value="#{supplierController.supplier.email}" />
+                
+                <h:outputLabel value="Buusiness Name:" />
+                <h:outputText value="#{supplierController.supplier.profile.businessName}" />
+                
+                <h:outputLabel value="Trading Name:" />
+                <h:outputText value="#{supplierController.supplier.profile.tradingName}" />
+                
+                <h:outputLabel value="Business Phone:" />
+                <h:outputText value="#{supplierController.supplier.profile.businessPhone}" />
+                
+                <h:outputLabel value="Business Email:" />
+                <h:outputText value="#{supplierController.supplier.profile.businessEmail}" />
+                
+                <h:outputLabel value="Street :"/>
+                <h:outputText value="#{supplierController.supplier.profile.address.street}" />
+                            
+                <h:outputLabel value="Suburb :"/>
+                <h:outputText value="#{supplierController.supplier.profile.address.suburb}" />
+                            
+                <h:outputLabel value="State  :"/>
+                <h:outputText value="#{supplierController.supplier.profile.address.state}" />
+                            
+                <h:outputLabel value="Post Code :"/>
+                <h:outputText value="#{supplierController.supplier.profile.address.postCode}" />
+                
+
+                <p:commandButton value="OK" icon="ui-icon-arrow-1-w" actionListener="#{supplierController.resetSupplier()}"
+                    onclick="supplierDetailDialogWidget.hide();" />
+		</h:panelGrid>
+	</h:form>
+    </p:dialog>
+</h:body>
+</html>

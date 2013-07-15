@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <p:dialog widgetVar="supplierUpdateDialogWidget"
+        id="supplierUpdateDialogId" height="300" width="400" modal="true"
+	closable="true" draggable="false" resizable="false">
+	<h:form id="supplierUpdateDialogForm" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputText value="Business Name" />
+                <h:inputText value="#{supplierController.profile.businessName}" required="true" label="Business Name" />
+                
+		<h:outputText value="Trading Name" />
+                <h:inputText value="#{supplierController.profile.tradingName}" required="true" label="Trading Name" />
+                
+                <h:outputText value="Phone" />
+                <h:inputText value="#{supplierController.supplier.phone}" required="true" label="Phone" />
+                
+		<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
+                    action="#{supplierController.updateSupplier()}"
+                    update=":messageGrowl :suppliersForm:suppliersTable"
+                    oncomplete="closeDialogIfSucess(xhr, status, args, supplierUpdateDialogWidget, 'supplierUpdateDialogId')" />
+                <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{supplierController.resetSupplier()}"
+                    onclick="supplierUpdateDialogWidget.hide();" type="button" />
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>
