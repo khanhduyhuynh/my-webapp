@@ -12,8 +12,10 @@ import com.app.model.Item;
 import com.app.model.Profile;
 import com.app.model.ShippingAddress;
 import com.app.model.Supplier;
-import com.app.persistence.service.IQueryList;
+
 import com.app.persistence.service.ITransactionServices;
+import com.app.persistence.service.MailServices;
+import com.app.persistence.service.QueryList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+
+
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -34,7 +44,8 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
    private ITransactionServices transactionServices;
    
    @Autowired
-    IQueryList queryList;
+    QueryList queryList;
+   
 
     /**
      * Test of addUserManagement method, of class TransactionServices.
@@ -97,6 +108,43 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         //item.setSuppliers(s);
         boolean checkItem = transactionServices.persistData(item);
         Assert.assertEquals(true, checkItem);
+        
+        //boolean check = mailservices.sendMail("khanhduyhuynhit@gmail.com", "Test", "Please check here");
+        //Assert.assertEquals(true, check);
+        
+        boolean check = true;
+        try {
+
+			// TLS
+			Properties propsTLS = new Properties();
+			propsTLS.put("mail.transport.protocol", "smtp");
+			propsTLS.put("mail.smtp.host", "smtp.gmail.com");
+			propsTLS.put("mail.smtp.auth", "true");
+			propsTLS.put("mail.smtp.starttls.enable", "true"); // GMail requires STARTTLS
+
+			Session sessionTLS = Session.getInstance(propsTLS);
+			sessionTLS.setDebug(true);
+
+			Message messageTLS = new MimeMessage(sessionTLS);
+			messageTLS.setFrom(new InternetAddress("trialapp2084@gmail.com", "Duy Huynh"));
+			messageTLS.setRecipients(Message.RecipientType.TO, InternetAddress.parse("khanhduyhuynhit@gmail.com")); // real recipient
+			messageTLS.setSubject("Test mail using TLS");
+			messageTLS.setText("This is test email sent to Your account using TLS.");
+
+			Transport transportTLS = sessionTLS.getTransport();
+			transportTLS.connect("smtp.gmail.com", 587, "trialapp2084@gmail.com", "trialapp"); // account used
+			transportTLS.sendMessage(messageTLS, messageTLS.getAllRecipients());
+			transportTLS.close();
+
+			System.out.println("TLS done.");
+			System.out.println("------------------------------------------------------------------------");
+
+			
+		} catch (Exception e) {
+			check = false;
+		}
+        
+        Assert.assertEquals(true, check);
         
       /*  
         item.getSuppliers().add(supplier);

@@ -15,7 +15,6 @@ import com.app.model.Supplier;
 import com.app.model.User;
 import com.app.persistence.dao.ITransactionDAO;
 import java.util.HashMap;
-import junit.framework.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +28,7 @@ public class LoginServices implements ILoginServices{
     ITransactionDAO transactionDAO;
     
     @Autowired
-    IQueryList queryList;
+    QueryList queryList;
     
     @Transactional(readOnly = false)
     public void createAdmin() {
@@ -89,11 +88,11 @@ public class LoginServices implements ILoginServices{
         this.transactionDAO = transactionDAO;
     }
 
-    public IQueryList getQueryList() {
+    public QueryList getQueryList() {
         return queryList;
     }
     
-    public void setQueryList(IQueryList queryList) {
+    public void setQueryList(QueryList queryList) {
         this.queryList = queryList;
     }
     

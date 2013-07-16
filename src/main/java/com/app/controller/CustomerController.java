@@ -4,10 +4,8 @@
  */
 package com.app.controller;
 
-import com.app.model.Address;
 import com.app.model.BillingAddress;
 import com.app.model.Customer;
-import com.app.model.Profile;
 import com.app.model.ShippingAddress;
 import com.app.model.Supplier;
 import com.app.model.User;

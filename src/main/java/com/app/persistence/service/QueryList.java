@@ -7,14 +7,13 @@ package com.app.persistence.service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author duy
  */
 
-public class QueryList implements IQueryList{
+public class QueryList {
     private HashMap hm = new HashMap();
     
     public QueryList() {

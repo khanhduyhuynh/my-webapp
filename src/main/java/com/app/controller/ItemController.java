@@ -4,8 +4,6 @@
  */
 package com.app.controller;
 
-import com.app.model.Address;
-import com.app.model.Profile;
 import com.app.model.Item;
 import com.app.model.Supplier;
 import com.app.model.User;

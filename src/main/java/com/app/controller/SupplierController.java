@@ -12,9 +12,15 @@ import com.app.persistence.service.QueryList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -29,11 +35,11 @@ public class SupplierController extends AbstractController {
     @ManagedProperty(value="#{QueryList}")
     private QueryList queryList;
     
-    private Supplier supplier;
+    private Supplier supplier = new Supplier();
     private List<Supplier> suppliers = new ArrayList<Supplier>();
     
-    private Profile profile;
-    private Address address;
+    private Profile profile = new Profile();
+    private Address address = new Address();
     
     public void createSupplier() {
         String strQuery = queryList.getQueryStr("findUserByUsername");
@@ -48,6 +54,31 @@ public class SupplierController extends AbstractController {
                 Supplier s = new Supplier(supplier.getUsername(), supplier.getPassword(), supplier.getFirstName(), supplier.getLastName(), supplier.getPhone(), supplier.getEmail());
                 s.setProfile(profile);
                 transactionServices.persistData(s);
+                
+                Properties propsTLS = new Properties();
+			propsTLS.put("mail.transport.protocol", "smtp");
+			propsTLS.put("mail.smtp.host", "smtp.gmail.com");
+			propsTLS.put("mail.smtp.auth", "true");
+			propsTLS.put("mail.smtp.starttls.enable", "true"); // GMail requires STARTTLS
+
+			Session sessionTLS = Session.getInstance(propsTLS);
+			sessionTLS.setDebug(true);
+
+			Message messageTLS = new MimeMessage(sessionTLS);
+			messageTLS.setFrom(new InternetAddress("trialapp2084@gmail.com", "Duy Huynh"));
+			messageTLS.setRecipients(Message.RecipientType.TO, InternetAddress.parse("khanhduyhuynhit@gmail.com")); // real recipient
+			messageTLS.setSubject("Test mail using TLS");
+			messageTLS.setText("This is test email sent to Your account using TLS.");
+
+			Transport transportTLS = sessionTLS.getTransport();
+			transportTLS.connect("smtp.gmail.com", 587, "trialapp2084@gmail.com", "trialapp"); // account used
+			transportTLS.sendMessage(messageTLS, messageTLS.getAllRecipients());
+			transportTLS.close();
+
+			System.out.println("TLS done.");
+			System.out.println("------------------------------------------------------------------------");
+
+                
 
                 closeDialog();
                 displayInfoMessageToUser("Created With Success");
@@ -123,7 +154,7 @@ public class SupplierController extends AbstractController {
     }
 
     public List<Supplier> getSuppliers() {
-        if(supplier == null) {
+        if(supplier.getId() == null) {
             loadSuppliers();
         }
         return suppliers;
@@ -159,6 +190,15 @@ public class SupplierController extends AbstractController {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+    
+    public String createSupplierSignUp() {
+        createSupplier();
+        return "/pages/public/login.xhtml?faces-redirect=true";
+    }
+	    
+    public String cancelSupplierSignUp() {
+        return "/pages/public/login.xhtml?faces-redirect=true";
     }
 
 }

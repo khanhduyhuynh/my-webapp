@@ -29,7 +29,7 @@ public class LoginFilter extends AbstractFilter implements Filter {
         if(allowedURIs == null){
             allowedURIs = new ArrayList<String>();
             allowedURIs.add(fc.getInitParameter("loginActionURI"));
-            allowedURIs.add("/NewProject/pages/public/accessDenied.xhtml");
+            allowedURIs.add("/NewProject/pages/public/*");
             //allowedURIs.add("/NewProject/pages/public/testPage.xhtml");
             //allowedURIs.add("/NewProject/javax.faces.resource/test.css.xhtml");
 			//allowedURIs.add("/NewProject/javax.faces.resource/theme.css.xhtml");

@@ -11,21 +11,22 @@
 	
 	
         
+        <!-- Bean Declaration -->
 	<bean id="TransactionServices" class="com.app.persistence.service.TransactionServices">
 		<property name="transactionDAO" ref="TransactionDAO" />
 	</bean>
         
         <bean id="LoginServices" class="com.app.persistence.service.LoginServices">
 		<property name="transactionDAO" ref="TransactionDAO" />
+                <property name="queryList" ref="QueryList" />
 	</bean>
       
 	<bean id="TransactionDAO" class="com.app.persistence.dao.TransactionDAO">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
-        <bean id="queries" class="com.app.persistence.service.QueryList" />
         
-	
-	<!-- Data Source Declaration -->
+        <bean id="QueryList" class="com.app.persistence.service.QueryList" />
+        
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />	
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/NewProjectDB" />	
@@ -36,6 +37,8 @@
 		<property name="minPoolSize" value="5" /> 
 	</bean>
         
+        
+	
 	<!-- Session Factory Declaration -->
 	<bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="DataSource" />
@@ -59,8 +62,7 @@
                                 <prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-                
-                
+                      
 	</bean>
 	
 	<!-- Enable the configuration of transactional behavior based on annotations -->

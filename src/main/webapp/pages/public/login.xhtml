@@ -7,9 +7,10 @@
 <h:head>
 </h:head>
 <h:body>
-    <p>#{bundle.loginTitle}</p>
     <h:form>
-        <p:growl showDetail="false" life="3000" />
+        <p>#{bundle.loginTitle} | <p:commandLink value="Supplier Sign Up" action="/pages/public/supplierSignUp.xhtml?faces-redirect=true" ajax="false" immediate="true" /></p>
+    
+        <p:growl id="messageGrowl" />
 	<h:panelGrid columns="2">
             <h:outputLabel value="#{bundle.loginUserName}" />
                 <h:inputText value="#{loginController.username}" label="Username" id="username" required="true">

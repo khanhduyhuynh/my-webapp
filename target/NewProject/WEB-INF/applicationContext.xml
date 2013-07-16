@@ -62,8 +62,7 @@
                                 <prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-                
-                
+                      
 	</bean>
 	
 	<!-- Enable the configuration of transactional behavior based on annotations -->
