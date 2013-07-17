@@ -1,16 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
-</h:head>
+        xmlns:f="http://java.sun.com/jsf/core" 
+        xmlns:p="http://primefaces.org/ui">
 <h:body>
+    <ui:composition template="/pages/templates/master.xhtml">
+        <ui:define name="divTop">
+            <h1>Welcome to our web site</h1>
+        </ui:define>
+        <ui:define name="divLeft">
+            
+        </ui:define>
+	<ui:define name="divMain">
     <h:form>
-        <p>#{bundle.loginTitle} | <p:commandLink value="Supplier Sign Up" action="/pages/public/supplierSignUp.xhtml?faces-redirect=true" ajax="false" immediate="true" /></p>
-    
-        <p:growl id="messageGrowl" />
+        <p>#{bundle.loginTitle} | <p:commandLink value="Supplier Sign Up" action="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" /></p>
+    </h:form>
+    <h:form>
 	<h:panelGrid columns="2">
             <h:outputLabel value="#{bundle.loginUserName}" />
                 <h:inputText value="#{loginController.username}" label="Username" id="username" required="true">
@@ -25,5 +31,8 @@
 	</h:panelGrid>
         <p:commandButton action="#{loginController.validateLogin()}" value="Log in" ajax="false" />
     </h:form>
+    <ui:include src="/pages/public/supplierSignUp.xhtml" />
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>

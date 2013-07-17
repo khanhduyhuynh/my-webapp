@@ -26,11 +26,11 @@ public class Admin extends User implements Serializable {
     }
     
     public Admin(String username, String password, String firstName, String lastName, String phone, String email){
-        super(username, password, firstName, lastName, phone, email, Role.ADMIN);
+        super(username, password, firstName, lastName, phone, email, Role.ADMIN, true, "randomString");
     }
     
     public Admin(String username, String password, String firstName, String lastName,String phone, String email, Date createdDate){
-        super(username, password, firstName, lastName, phone, email, createdDate, Role.ADMIN);
+        super(username, password, firstName, lastName, phone, email, createdDate, Role.ADMIN, true, "randomString");
     }
     
 }

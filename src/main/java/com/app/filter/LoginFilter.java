@@ -26,17 +26,11 @@ public class LoginFilter extends AbstractFilter implements Filter {
     
     @Override
     public void init(FilterConfig fc) throws ServletException {
-        if(allowedURIs == null){
-            allowedURIs = new ArrayList<String>();
+        allowedURIs = new ArrayList<String>();
             allowedURIs.add(fc.getInitParameter("loginActionURI"));
-            allowedURIs.add("/NewProject/pages/public/*");
-            //allowedURIs.add("/NewProject/pages/public/testPage.xhtml");
-            //allowedURIs.add("/NewProject/javax.faces.resource/test.css.xhtml");
-			//allowedURIs.add("/NewProject/javax.faces.resource/theme.css.xhtml");
-			//allowedURIs.add("/NewProject/javax.faces.resource/primefaces.js.xhtml");
-			//allowedURIs.add("/NewProject/javax.faces.resource/primefaces.css.xhtml");
-			//allowedURIs.add("/NewProject/javax.faces.resource/jquery/jquery.js.xhtml");
-        }
+            allowedURIs.add("/NewProject/pages/public/login.xhtml");
+            allowedURIs.add("/NewProject/pages/public/accessDenied.xhtml");
+            allowedURIs.add("/NewProject/pages/public/confirmAccount.xhtml");
     }
     
     @Override

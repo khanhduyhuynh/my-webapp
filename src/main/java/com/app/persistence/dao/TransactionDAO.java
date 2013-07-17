@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class TransactionDAO<T> implements ITransactionDAO {
@@ -82,7 +83,20 @@ public class TransactionDAO<T> implements ITransactionDAO {
 	return result;
     }
     
-    public T findByCondition(String strQuery, HashMap parameters) {
+    public T findByOneCondition(String strQuery, String parameterKey, Object parameterValue) {
+        T result = null;
+        try {
+            Query query = sessionFactory.getCurrentSession().createQuery(strQuery);
+            query.setParameter(parameterKey, parameterValue);
+            result = (T)query.uniqueResult();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+	return result;
+    }
+    
+    public T findByManyCondition(String strQuery, HashMap parameters) {
         T result = null;
         try {
             Query query = sessionFactory.getCurrentSession().createQuery(strQuery);
@@ -103,7 +117,5 @@ public class TransactionDAO<T> implements ITransactionDAO {
             query.setParameter(entry.getKey(), entry.getValue());
         }
     }
-
-    
-    
+   
 }

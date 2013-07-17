@@ -43,6 +43,11 @@ public class User implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     protected Role roleName;
+    
+    @Column(nullable = false)
+    protected boolean activationStatus;
+    @Column(nullable = false)
+    protected String activationKey;
 
     // ======================================
     // =            Constructors            =
@@ -52,7 +57,7 @@ public class User implements Serializable {
         
     }
 
-    public User(String username, String password, String firstName, String lastName, String phone, String email, Role role){
+    public User(String username, String password, String firstName, String lastName, String phone, String email, Role role, boolean activationStatus, String activationKey){
         this.username = username;
 	this.password = password;
         this.firstName= firstName;
@@ -61,9 +66,11 @@ public class User implements Serializable {
         this.email = email;
         this.createdDate = new Date();
         this.roleName = role;
+        this.activationStatus = activationStatus;
+        this.activationKey = activationKey;
     }
     
-    public User(String username, String password, String firstName, String lastName, String phone, String email, Date createdDate, Role role){
+    public User(String username, String password, String firstName, String lastName, String phone, String email, Date createdDate, Role role, boolean activationStatus, String activationKey){
         this.username = username;
 	this.password = password;
         this.firstName= firstName;
@@ -72,6 +79,8 @@ public class User implements Serializable {
         this.email = email;
         this.createdDate = createdDate;
         this.roleName = role;
+        this.activationStatus = activationStatus;
+        this.activationKey = activationKey;
     }
 
     
@@ -166,4 +175,21 @@ public class User implements Serializable {
     public boolean isCustomer() {
         return Role.CUSTOMER.equals(roleName);
     }
+
+    public boolean getActivationStatus() {
+        return activationStatus;
+    }
+
+    public void setActivationStatus(boolean activationStatus) {
+        this.activationStatus = activationStatus;
+    }
+
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+    
 }

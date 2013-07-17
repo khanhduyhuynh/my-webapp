@@ -32,7 +32,7 @@ public class LoginController extends AbstractController {
     
     @PostConstruct
     public void init(){
-        loginServices.createAdmin();
+        loginServices.initData();
     }
     
     public String validateLogin() {
@@ -49,7 +49,7 @@ public class LoginController extends AbstractController {
            if(user.isSupplier()) {
                return "supplier_forward";
            }
-           return "";
+           return null;
 	}
         displayErrorMessageToUser("Check your email/password");
 	return null;

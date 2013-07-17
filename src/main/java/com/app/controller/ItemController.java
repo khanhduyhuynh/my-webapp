@@ -42,17 +42,15 @@ public class ItemController extends AbstractController {
     public void init() {
         User user = userController.getUser();
         String strQuery = queryList.getQueryStr("findUserByUsername");
-        HashMap hm = new HashMap();
-        hm.put("username", user.getUsername());
-        supplier = (Supplier)transactionServices.findByCondition(strQuery, hm);
+
+        supplier = (Supplier)transactionServices.findByOneCondition(strQuery, "username", user.getUsername());
         
     }
     
     public void createItem() {
         String strQuery = queryList.getQueryStr("findItemByName");
-        HashMap hm = new HashMap();
-        hm.put("name", item.getName());
-        if(transactionServices.findByCondition(strQuery, hm) == null) {
+
+        if(transactionServices.findByOneCondition(strQuery, "name", item.getName()) == null) {
             try {
                 Item i = new Item(item.getName(), item.getDescription());
                 i.getSuppliers().add(supplier);

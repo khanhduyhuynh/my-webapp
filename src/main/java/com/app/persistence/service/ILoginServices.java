@@ -11,6 +11,6 @@ import com.app.model.User;
  * @author duy
  */
 public interface ILoginServices {
-    public void createAdmin();
+    public void initData();
     public User validateLogin(String username, String password);
 }

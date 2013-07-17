@@ -46,10 +46,15 @@ public class TransactionServices<T> implements ITransactionServices {
     public List<T> findAllByCondition(String strQuery, HashMap parameters) {
         return transactionDAO.findAllByCondition(strQuery, parameters);
     }
+    
+    @Transactional(readOnly = true)
+    public T findByOneCondition(String strQuery, String parameterKey, Object parameterValue) {
+       return (T)transactionDAO.findByOneCondition(strQuery, parameterKey, parameterValue);
+    }
 
     @Transactional(readOnly = true)
-    public T findByCondition(String strQuery, HashMap parameters) {
-       return (T)transactionDAO.findByCondition(strQuery, parameters);
+    public T findByManyCondition(String strQuery, HashMap parameters) {
+       return (T)transactionDAO.findByManyCondition(strQuery, parameters);
     }
     
     public ITransactionDAO getTransactionDAO() {

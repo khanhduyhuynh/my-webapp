@@ -8,19 +8,14 @@ import com.app.model.Address;
 import com.app.model.Profile;
 import com.app.model.Supplier;
 import com.app.persistence.service.ITransactionServices;
+import com.app.persistence.service.MailServices;
 import com.app.persistence.service.QueryList;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
+import java.util.UUID;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -35,51 +30,32 @@ public class SupplierController extends AbstractController {
     @ManagedProperty(value="#{QueryList}")
     private QueryList queryList;
     
-    private Supplier supplier = new Supplier();
+    @ManagedProperty(value="#{MailServices}")
+    private MailServices mailServices;
+    
+    private Supplier supplier;
     private List<Supplier> suppliers = new ArrayList<Supplier>();
     
-    private Profile profile = new Profile();
-    private Address address = new Address();
+    private Profile profile;
+    private Address address;
     
     public void createSupplier() {
         String strQuery = queryList.getQueryStr("findUserByUsername");
-        HashMap hm = new HashMap();
-        hm.put("username", supplier.getUsername());
-        if(transactionServices.findByCondition(strQuery, hm) == null) {
+
+        if(transactionServices.findByOneCondition(strQuery, "username", supplier.getUsername()) == null) {
             try {
                 transactionServices.persistData(address);
                 profile.setAddress(address);
                 transactionServices.persistData(profile);
+                
+                String activationKey = UUID.randomUUID().toString();
 
-                Supplier s = new Supplier(supplier.getUsername(), supplier.getPassword(), supplier.getFirstName(), supplier.getLastName(), supplier.getPhone(), supplier.getEmail());
+                Supplier s = new Supplier(supplier.getUsername(), supplier.getPassword(), supplier.getFirstName(), supplier.getLastName(), supplier.getPhone(), supplier.getEmail(), false, activationKey);
                 s.setProfile(profile);
                 transactionServices.persistData(s);
                 
-                Properties propsTLS = new Properties();
-			propsTLS.put("mail.transport.protocol", "smtp");
-			propsTLS.put("mail.smtp.host", "smtp.gmail.com");
-			propsTLS.put("mail.smtp.auth", "true");
-			propsTLS.put("mail.smtp.starttls.enable", "true"); // GMail requires STARTTLS
-
-			Session sessionTLS = Session.getInstance(propsTLS);
-			sessionTLS.setDebug(true);
-
-			Message messageTLS = new MimeMessage(sessionTLS);
-			messageTLS.setFrom(new InternetAddress("trialapp2084@gmail.com", "Duy Huynh"));
-			messageTLS.setRecipients(Message.RecipientType.TO, InternetAddress.parse("khanhduyhuynhit@gmail.com")); // real recipient
-			messageTLS.setSubject("Test mail using TLS");
-			messageTLS.setText("This is test email sent to Your account using TLS.");
-
-			Transport transportTLS = sessionTLS.getTransport();
-			transportTLS.connect("smtp.gmail.com", 587, "trialapp2084@gmail.com", "trialapp"); // account used
-			transportTLS.sendMessage(messageTLS, messageTLS.getAllRecipients());
-			transportTLS.close();
-
-			System.out.println("TLS done.");
-			System.out.println("------------------------------------------------------------------------");
-
+                mailServices.sendMail(supplier.getEmail(), supplier.getUsername(), activationKey);
                 
-
                 closeDialog();
                 displayInfoMessageToUser("Created With Success");
                 resetSupplier();
@@ -154,7 +130,7 @@ public class SupplierController extends AbstractController {
     }
 
     public List<Supplier> getSuppliers() {
-        if(supplier.getId() == null) {
+        if(supplier == null) {
             loadSuppliers();
         }
         return suppliers;
@@ -192,13 +168,11 @@ public class SupplierController extends AbstractController {
         this.address = address;
     }
     
-    public String createSupplierSignUp() {
-        createSupplier();
-        return "/pages/public/login.xhtml?faces-redirect=true";
-    }
-	    
-    public String cancelSupplierSignUp() {
-        return "/pages/public/login.xhtml?faces-redirect=true";
+    public MailServices getMailServices() {
+        return mailServices;
     }
 
+    public void setMailServices(MailServices mailServices) {
+        this.mailServices = mailServices;
+    }
 }

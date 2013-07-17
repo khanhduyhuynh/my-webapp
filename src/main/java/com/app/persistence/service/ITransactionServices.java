@@ -18,5 +18,7 @@ public interface ITransactionServices<T> {
     
     public List<T> findAll(String strQuery);
     public List<T> findAllByCondition(String strQuery, HashMap parameters);
-    public T findByCondition(String strQuery, HashMap<String, Object> parameters);
+    
+    public T findByOneCondition(String strQuery, String parameterKey, Object parameterValue);
+    public T findByManyCondition(String strQuery, HashMap parameters);
 }

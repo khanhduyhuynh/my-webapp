@@ -45,12 +45,12 @@ public class Customer extends User implements Serializable {
         
     }
     
-    public Customer(String username, String password, String firstName, String lastName, String phone, String email) {
-        super(username, password, firstName, lastName, phone, email, Role.CUSTOMER);
+    public Customer(String username, String password, String firstName, String lastName, String phone, String email, boolean activationStatus, String activationKey) {
+        super(username, password, firstName, lastName, phone, email, Role.CUSTOMER, activationStatus, activationKey);
     }
     
-    public Customer(String username, String password, String firstName, String lastName, String phone, String email, Date createdDate) {
-        super(username, password, firstName, lastName, phone, email, createdDate, Role.CUSTOMER);
+    public Customer(String username, String password, String firstName, String lastName, String phone, String email, Date createdDate, boolean activationStatus, String activationKey) {
+        super(username, password, firstName, lastName, phone, email, createdDate, Role.CUSTOMER, activationStatus, activationKey);
     }
     
     // ======================================

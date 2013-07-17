@@ -14,6 +14,7 @@ import com.app.persistence.service.QueryList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -46,26 +47,27 @@ public class CustomerController extends AbstractController {
     public void init() {
         User user = userController.getUser();
         String strQuery = queryList.getQueryStr("findUserByUsername");
-        HashMap hm = new HashMap();
-        hm.put("username", user.getUsername());
-        supplier = (Supplier)transactionServices.findByCondition(strQuery, hm);
+        supplier = (Supplier)transactionServices.findByOneCondition(strQuery, "username", user.getUsername());
         
     }
     
     public void createCustomer() {
         String strQuery = queryList.getQueryStr("findUserByUsername");
-        HashMap hm = new HashMap();
-        hm.put("username", customer.getUsername());
-        if(transactionServices.findByCondition(strQuery, hm) == null) {
+
+        if(transactionServices.findByOneCondition(strQuery, "username", customer.getUsername()) == null) {
             try {
                 transactionServices.persistData(billingAddress);
                 transactionServices.persistData(shippingAddress);
 
-                Customer c = new Customer(customer.getUsername(), customer.getPassword(), customer.getFirstName(), customer.getLastName(), customer.getPhone(), customer.getEmail());
+                String activationKey = UUID.randomUUID().toString();
+                
+                Customer c = new Customer(customer.getUsername(), customer.getPassword(), customer.getFirstName(), customer.getLastName(), customer.getPhone(), customer.getEmail(), false, activationKey);
                 c.setBillingAddress(billingAddress);
                 c.setShippingAddress(shippingAddress);
                 c.setSupplier(supplier);
                 transactionServices.persistData(c);
+                
+                //send mail here
 
                 closeDialog();
                 displayInfoMessageToUser("Created With Success");
