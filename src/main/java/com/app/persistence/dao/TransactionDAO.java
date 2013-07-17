@@ -96,7 +96,7 @@ public class TransactionDAO<T> implements ITransactionDAO {
 	return result;
     }
     
-    public T findByManyCondition(String strQuery, HashMap parameters) {
+    public T findByManyConditions(String strQuery, HashMap parameters) {
         T result = null;
         try {
             Query query = sessionFactory.getCurrentSession().createQuery(strQuery);

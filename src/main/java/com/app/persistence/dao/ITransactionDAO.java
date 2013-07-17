@@ -21,6 +21,6 @@ public interface ITransactionDAO<T> {
     public List<T> findAllByCondition(String strQuery, HashMap parameters);
     
     public T findByOneCondition(String strQuery, String parameterKey, Object paramaterValue);
-    public T findByManyCondition(String strQuery, HashMap parameters);
+    public T findByManyConditions(String strQuery, HashMap parameters);
     
 }

@@ -14,7 +14,7 @@
         </ui:define>
 	<ui:define name="divMain">
     <h:form>
-        <p>#{bundle.loginTitle} | <p:commandLink value="Supplier Sign Up" action="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" /></p>
+        <p>#{bundle.loginTitle} | <p:commandLink value="Supplier Sign Up" actionListener="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" /></p>
     </h:form>
     <h:form>
 	<h:panelGrid columns="2">

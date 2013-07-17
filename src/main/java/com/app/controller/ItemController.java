@@ -7,8 +7,8 @@ package com.app.controller;
 import com.app.model.Item;
 import com.app.model.Supplier;
 import com.app.model.User;
+import com.app.persistence.service.IQueryList;
 import com.app.persistence.service.ITransactionServices;
-import com.app.persistence.service.QueryList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +28,7 @@ public class ItemController extends AbstractController {
     private ITransactionServices transactionServices;
     
     @ManagedProperty(value="#{QueryList}")
-    private QueryList queryList;
+    private IQueryList queryList;
     
     @ManagedProperty(value=UserController.INJECTION_NAME)
     private UserController userController;
@@ -111,11 +111,11 @@ public class ItemController extends AbstractController {
         this.transactionServices = transactionServices;
     }
 
-    public QueryList getQueryList() {
+    public IQueryList getQueryList() {
         return queryList;
     }
 
-    public void setQueryList(QueryList queryList) {
+    public void setQueryList(IQueryList queryList) {
         this.queryList = queryList;
     }
     

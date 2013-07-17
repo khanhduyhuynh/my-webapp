@@ -113,7 +113,7 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         HashMap hm = new HashMap();
         hm.put("username", "khanhduyhuynh");
         hm.put("activationKey", "8a1aa529-586a-46f9-af52-4e1036671bc0");
-        User user = (User)transactionServices.findByManyCondition("select u from User u where u.username = :username and u.activationKey = :activationKey", hm);
+        User user = (User)transactionServices.findByManyConditions("select u from User u where u.username = :username and u.activationKey = :activationKey", hm);
         Assert.assertNotNull(user);
         //boolean check = mailservices.sendMail("khanhduyhuynhit@gmail.com", "Test", "Please check here");
         //Assert.assertEquals(true, check);

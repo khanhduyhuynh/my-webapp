@@ -54,7 +54,7 @@
                 <h:inputText value="#{supplierController.address.postCode}" required="true" label="Post Code" />
                 
 		<p:commandButton value="#{bundle.create}" icon="ui-icon-plus"
-                    action="#{supplierController.createSupplier()}"
+                                 action="#{supplierController.createSupplier()}"
                     update=":messageGrowl :suppliersForm:suppliersTable"
                     oncomplete="closeDialogIfSucess(xhr, status, args, supplierCreateDialogWidget, 'supplierCreateDialogId')" />
                 <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{supplierController.resetSupplier()}"

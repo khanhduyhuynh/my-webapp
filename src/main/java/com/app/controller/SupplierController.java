@@ -7,9 +7,9 @@ package com.app.controller;
 import com.app.model.Address;
 import com.app.model.Profile;
 import com.app.model.Supplier;
+import com.app.persistence.service.IQueryList;
 import com.app.persistence.service.ITransactionServices;
 import com.app.persistence.service.MailServices;
-import com.app.persistence.service.QueryList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +28,7 @@ public class SupplierController extends AbstractController {
     private ITransactionServices transactionServices;
     
     @ManagedProperty(value="#{QueryList}")
-    private QueryList queryList;
+    private IQueryList queryList;
     
     @ManagedProperty(value="#{MailServices}")
     private MailServices mailServices;
@@ -41,30 +41,43 @@ public class SupplierController extends AbstractController {
     
     public void createSupplier() {
         String strQuery = queryList.getQueryStr("findUserByUsername");
-
         if(transactionServices.findByOneCondition(strQuery, "username", supplier.getUsername()) == null) {
-            try {
-                transactionServices.persistData(address);
-                profile.setAddress(address);
-                transactionServices.persistData(profile);
-                
-                String activationKey = UUID.randomUUID().toString();
+            strQuery = queryList.getQueryStr("findSupplierByBusinessName");
+            if(transactionServices.findByOneCondition(strQuery, "businessName", profile.getBusinessName()) == null) {
+                strQuery = queryList.getQueryStr("findSupplierByTradingName");
+                if(transactionServices.findByOneCondition(strQuery, "tradingName", profile.getTradingName()) == null) {
+                    try {
+                        transactionServices.persistData(address);
+                        profile.setAddress(address);
+                        transactionServices.persistData(profile);
 
-                Supplier s = new Supplier(supplier.getUsername(), supplier.getPassword(), supplier.getFirstName(), supplier.getLastName(), supplier.getPhone(), supplier.getEmail(), false, activationKey);
-                s.setProfile(profile);
-                transactionServices.persistData(s);
-                
-                mailServices.sendMail(supplier.getEmail(), supplier.getUsername(), activationKey);
-                
-                closeDialog();
-                displayInfoMessageToUser("Created With Success");
-                resetSupplier();
-                loadSuppliers();
+                        String activationKey = UUID.randomUUID().toString();
+
+                        Supplier s = new Supplier(supplier.getUsername(), supplier.getPassword(), supplier.getFirstName(), supplier.getLastName(), supplier.getPhone(), supplier.getEmail(), false, activationKey);
+                        s.setProfile(profile);
+                        transactionServices.persistData(s);
+
+                        mailServices.sendMail(supplier.getEmail(), supplier.getUsername(), activationKey);
+
+                        closeDialog();
+                        displayInfoMessageToUser("Created With Success");
+                        resetSupplier();
+                        loadSuppliers();
+                    }
+                    catch(Exception e) {
+                        keepDialogOpen();
+                        displayErrorMessageToUser("Try again later, we could not create successfully");
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    keepDialogOpen();
+                    displayErrorMessageToUser("Please choose another trading name");
+                }
             }
-            catch(Exception e) {
+            else {
                 keepDialogOpen();
-                displayErrorMessageToUser("Try again later, we could not create successfully");
-                e.printStackTrace();
+                displayErrorMessageToUser("Please choose another business name");
             }
         }
         else {
@@ -112,11 +125,11 @@ public class SupplierController extends AbstractController {
         this.transactionServices = transactionServices;
     }
 
-    public QueryList getQueryList() {
+    public IQueryList getQueryList() {
         return queryList;
     }
 
-    public void setQueryList(QueryList queryList) {
+    public void setQueryList(IQueryList queryList) {
         this.queryList = queryList;
     }
     

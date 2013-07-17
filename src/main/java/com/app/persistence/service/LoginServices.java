@@ -27,7 +27,7 @@ public class LoginServices implements ILoginServices{
     ITransactionDAO transactionDAO;
     
     @Autowired
-    QueryList queryList;
+    IQueryList queryList;
     
     @Transactional(readOnly = false)
     public void initData() {
@@ -85,11 +85,11 @@ public class LoginServices implements ILoginServices{
         this.transactionDAO = transactionDAO;
     }
 
-    public QueryList getQueryList() {
+    public IQueryList getQueryList() {
         return queryList;
     }
     
-    public void setQueryList(QueryList queryList) {
+    public void setQueryList(IQueryList queryList) {
         this.queryList = queryList;
     }
     

@@ -13,7 +13,7 @@ import java.util.Set;
  * @author duy
  */
 
-public class QueryList {
+public class QueryList implements IQueryList{
     private HashMap hm = new HashMap();
     
     public QueryList() {
@@ -23,6 +23,8 @@ public class QueryList {
         hm.put("findAllAdmins", "select a from Admin a");
         
         hm.put("findAllSuppliers", "select s from Supplier s");
+        hm.put("findSupplierByBusinessName", "select s from Supplier s where s.profile.businessName = :businessName");
+        hm.put("findSupplierByTradingName", "select s from Supplier s where s.profile.tradingName = :tradingName");
         
         hm.put("findCustomersBySupplier", "select c from Customer c where c.supplier.username = :supplier");
         

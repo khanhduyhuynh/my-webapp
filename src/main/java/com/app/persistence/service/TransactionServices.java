@@ -53,8 +53,8 @@ public class TransactionServices<T> implements ITransactionServices {
     }
 
     @Transactional(readOnly = true)
-    public T findByManyCondition(String strQuery, HashMap parameters) {
-       return (T)transactionDAO.findByManyCondition(strQuery, parameters);
+    public T findByManyConditions(String strQuery, HashMap parameters) {
+       return (T)transactionDAO.findByManyConditions(strQuery, parameters);
     }
     
     public ITransactionDAO getTransactionDAO() {

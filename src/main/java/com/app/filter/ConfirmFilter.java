@@ -41,7 +41,7 @@ public class ConfirmFilter extends AbstractFilter implements Filter {
             hm.put("username", username);
             hm.put("activationKey", activationKey);
             
-            User user = (User)transactionServices.findByManyCondition("select u from User u where u.username = :username and u.activationKey = :activationKey", hm);
+            User user = (User)transactionServices.findByManyConditions("select u from User u where u.username = :username and u.activationKey = :activationKey", hm);
         
             if(user != null) {
                 user.setActivationStatus(true);
