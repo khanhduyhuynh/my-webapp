@@ -38,13 +38,6 @@ public class Item implements Serializable {
     @Lob
     private String description;
     
-    @ManyToMany
-    @JoinTable(name = "ItemSupplier_table",
-            joinColumns=@JoinColumn(name = "item_id"),
-            inverseJoinColumns=@JoinColumn(name = "supplier_id")
-    )       
-    private List<Supplier> suppliers = new ArrayList<Supplier>();
-
     // ======================================
     // =            Constructors            =
     // ======================================
@@ -88,14 +81,5 @@ public class Item implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public List<Supplier> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(List<Supplier> suppliers) {
-        this.suppliers = suppliers;
-    }
-    
     
 }

@@ -14,6 +14,12 @@
 		<h:outputText value="Description" />
                 <h:inputText value="#{itemController.item.description}" required="true" label="Description" />
                 
+                <h:outputText value="In Stock" />
+                <h:inputText value="#{itemController.itemSupplier.numInStock}" required="true" label="Number In Stock" />
+                
+		<h:outputText value="Price" />
+                <h:inputText value="#{itemController.itemSupplier.price}" required="true" label="Price" />
+                
 		<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
                     action="#{itemController.updateItem()}"
                     update=":messageGrowl :itemsForm:itemsTable"

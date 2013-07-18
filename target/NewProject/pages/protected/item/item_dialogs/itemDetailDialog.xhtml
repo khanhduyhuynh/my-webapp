@@ -12,6 +12,12 @@
 		
                 <h:outputLabel value="Description:" />
                 <h:outputText value="#{itemController.item.description}" />
+                
+                <h:outputText value="In Stock:" />
+                <h:outputText value="#{itemController.itemSupplier.numInStock}" />
+		
+                <h:outputLabel value="Price:" />
+                <h:outputText value="#{itemController.itemSupplier.price}" />
 
                 <p:commandButton value="OK" icon="ui-icon-arrow-1-w" actionListener="#{itemController.resetItem()}"
                     onclick="itemDetailDialogWidget.hide();" />

@@ -4,6 +4,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core" 
         xmlns:p="http://primefaces.org/ui">
+    
+    <f:event listener="#{loginController.showMessage()}" type="preRenderView" />
+    
 <h:body>
     <ui:composition template="/pages/templates/master.xhtml">
         <ui:define name="divTop">
@@ -13,8 +16,10 @@
             
         </ui:define>
 	<ui:define name="divMain">
+            
     <h:form>
-        <p>#{bundle.loginTitle} | <p:commandLink value="Supplier Sign Up" actionListener="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" /></p>
+        
+        <p>#{bundle.loginTitle} | <p:commandLink value="#{bundle.signUpSupplierLink}" actionListener="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" /></p>
     </h:form>
     <h:form>
 	<h:panelGrid columns="2">

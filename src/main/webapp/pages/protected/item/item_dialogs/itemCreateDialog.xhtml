@@ -16,6 +16,12 @@
                 
                 <h:outputLabel value="Description:" />
                 <h:inputTextarea value="#{itemController.item.description}" required="true" label="Description" />
+                
+                <h:outputLabel value="Number In Stock:" />
+                <h:inputTextarea value="#{itemController.itemSupplier.numInStock}" required="true" label="Number In Stock" />
+                
+                <h:outputLabel value="Price:" />
+                <h:inputTextarea value="#{itemController.itemSupplier.price}" required="true" label="Price" />
 
 		<p:commandButton value="#{bundle.create}" icon="ui-icon-plus"
                     action="#{itemController.createItem()}"

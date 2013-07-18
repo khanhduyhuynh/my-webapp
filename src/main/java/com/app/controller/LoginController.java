@@ -10,7 +10,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author duy
  */
 @ManagedBean(name="loginController")
-@RequestScoped
+@SessionScoped
 public class LoginController extends AbstractController {
     
     @ManagedProperty(value="#{LoginServices}")
@@ -34,22 +36,26 @@ public class LoginController extends AbstractController {
     public void init(){
         loginServices.initData();
     }
-    
+
     public String validateLogin() {
         User user = loginServices.validateLogin(username, password);
 	if(user != null) {
-           userController.setUser(user);
-           FacesContext context = FacesContext.getCurrentInstance();
-           HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-           request.getSession().setAttribute("user", user);
-           
-           if(user.isAdmin()) {
-               return "admin_forward";
-           }
-           if(user.isSupplier()) {
-               return "supplier_forward";
-           }
-           return null;
+            if(user.getActivationStatus()){
+                userController.setUser(user);
+                FacesContext context = FacesContext.getCurrentInstance();
+                HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+                request.getSession().setAttribute("user", user);
+
+                if(user.isAdmin()) {
+                    return "admin_forward";
+                }
+                if(user.isSupplier()) {
+                    return "supplier_forward";
+                }
+                return null;
+            }
+            displayErrorMessageToUser("Your account has not been activated, please check your email");
+            return null;
 	}
         displayErrorMessageToUser("Check your email/password");
 	return null;

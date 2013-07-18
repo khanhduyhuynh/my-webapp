@@ -5,6 +5,8 @@
 package com.app.controller;
 
 import com.app.model.Item;
+import com.app.model.ItemSupplier;
+import com.app.model.ItemSupplierKey;
 import com.app.model.Supplier;
 import com.app.model.User;
 import com.app.persistence.service.IQueryList;
@@ -36,6 +38,9 @@ public class ItemController extends AbstractController {
     private Item item;
     private List<Item> items = new ArrayList<Item>();
     
+    private ItemSupplier itemSupplier;
+    private List<ItemSupplier> itemSuppliers = new ArrayList<ItemSupplier>();
+    
     private Supplier supplier;
     
     @PostConstruct
@@ -53,9 +58,12 @@ public class ItemController extends AbstractController {
         if(transactionServices.findByOneCondition(strQuery, "name", item.getName()) == null) {
             try {
                 Item i = new Item(item.getName(), item.getDescription());
-                i.getSuppliers().add(supplier);
                 transactionServices.persistData(i);
-
+                
+                ItemSupplierKey itemSupplierKey = new ItemSupplierKey(i, supplier);
+                ItemSupplier itemSupplierObj = new ItemSupplier(itemSupplierKey, itemSupplier.getNumInStock(), itemSupplier.getPrice());
+                transactionServices.persistData(itemSupplierObj);
+                
                 closeDialog();
                 displayInfoMessageToUser("Created With Success");
                 resetItem();
@@ -76,6 +84,8 @@ public class ItemController extends AbstractController {
     public void updateItem() {
         try {
             transactionServices.updateData(item);
+            transactionServices.updateData(itemSupplier);
+            
             closeDialog();
             displayInfoMessageToUser("Updated With Success");
             resetItem();
@@ -91,6 +101,7 @@ public class ItemController extends AbstractController {
     public void deleteItem() {
         try {
             transactionServices.deleteData(item);
+            transactionServices.deleteData(itemSupplier);
             closeDialog();
             displayInfoMessageToUser("Deleted With Success");
             resetItem();
@@ -141,14 +152,22 @@ public class ItemController extends AbstractController {
     
     private void loadItems()
     {
-        String strQuery = queryList.getQueryStr("findItemsBySupplier");
+        String strQuery = queryList.getQueryStr("findItemSuppliersBySupplier");
         HashMap hm = new HashMap();
-        hm.put("supplier", supplier.getUsername());
-        items = transactionServices.findAllByCondition(strQuery, hm);
+        hm.put("supplierId", supplier.getId());
+        itemSuppliers = transactionServices.findAllByCondition(strQuery, hm);
+        
+        items.clear();
+        strQuery = queryList.getQueryStr("findItemById");
+        for(ItemSupplier item_supplier : itemSuppliers) {
+            Item itemObj = (Item)transactionServices.findByOneCondition(strQuery, "itemId", item_supplier.getItemSupplierKey().getItemId());
+            items.add(itemObj);
+        }
     }
     
     public void resetItem() {
         item = new Item();
+        itemSupplier = new ItemSupplier();
     }
 
     public UserController getUserController() {
@@ -157,6 +176,39 @@ public class ItemController extends AbstractController {
 
     public void setUserController(UserController userController) {
         this.userController = userController;
+    }
+
+    public ItemSupplier getItemSupplier() {
+        return itemSupplier;
+    }
+    
+    public ItemSupplier returnItemSupplier(Item i) {
+        String strQuery = queryList.getQueryStr("findItemSupplierByItemAndSupplier");
+        HashMap hm = new HashMap();
+        hm.put("itemId", i.getId());
+        hm.put("supplierId", supplier.getId());
+        ItemSupplier itemSupplierObj = (ItemSupplier)transactionServices.findByManyConditions(strQuery, hm);
+        return itemSupplierObj;
+    }
+    
+    public int returnItemSupplierNumInStock(Item i) {
+        return returnItemSupplier(i).getNumInStock();
+    }
+    
+    public double returnItemSupplierPrice(Item i) {
+        return returnItemSupplier(i).getPrice();
+    }
+
+    public void setItemSupplier(ItemSupplier itemSupplier) {
+        this.itemSupplier = itemSupplier;
+    }
+
+    public List<ItemSupplier> getItemSuppliers() {
+        return itemSuppliers;
+    }
+
+    public void setItemSuppliers(List<ItemSupplier> itemSuppliers) {
+        this.itemSuppliers = itemSuppliers;
     }
 
 }

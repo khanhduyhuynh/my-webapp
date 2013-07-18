@@ -34,9 +34,7 @@ public class Supplier extends User implements Serializable {
     
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE)
     private List<Customer> customers = new ArrayList<Customer>();
-    
-    @ManyToMany(mappedBy = "suppliers")
-    private List<Item> items = new ArrayList<Item>();
+
     
     // ======================================
     // =            Constructors            =
@@ -74,14 +72,4 @@ public class Supplier extends User implements Serializable {
         this.customers = customers;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-    
-    
-    
 }

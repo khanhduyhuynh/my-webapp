@@ -26,16 +26,33 @@
                     </p:column>
                     
                     <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="In Stock" />
+			</f:facet>
+                        <h:outputText value="#{itemController.returnItemSupplierNumInStock(item)}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Price" />
+			</f:facet>
+                        <h:outputText value="#{itemController.returnItemSupplierPrice(item)}" />
+                    </p:column>
+                    
+                    <p:column>
                         <p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" update=":itemDetailDialogForm" onclick="itemDetailDialogWidget.show();" >
                             <f:setPropertyActionListener target="#{itemController.item}" value="#{item}" />
+                            <f:setPropertyActionListener target="#{itemController.itemSupplier}" value="#{itemController.returnItemSupplier(item)}" />
 			</p:commandButton> 
 			<p:spacer width="10px" />
 			<p:commandButton value="#{bundle.update}" icon="ui-icon-pencil" update=":itemUpdateDialogForm" onclick="itemUpdateDialogWidget.show();" >
                             <f:setPropertyActionListener target="#{itemController.item}" value="#{item}" />
+                            <f:setPropertyActionListener target="#{itemController.itemSupplier}" value="#{itemController.returnItemSupplier(item)}" />
 			</p:commandButton>
 			<p:spacer width="10px" />
 			<p:commandButton value="#{bundle.delete}" icon="ui-icon-trash" update=":itemDeleteDialogForm" onclick="itemDeleteDialogWidget.show();" >
                             <f:setPropertyActionListener target="#{itemController.item}" value="#{item}" />
+                            <f:setPropertyActionListener target="#{itemController.itemSupplier}" value="#{itemController.returnItemSupplier(item)}" />
 			</p:commandButton>
                     </p:column>
 

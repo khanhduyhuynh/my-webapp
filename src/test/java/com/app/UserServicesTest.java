@@ -104,17 +104,12 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         Item item = new Item("IPhone5", "This is the lastest model");
         //List<Supplier> s = new ArrayList<Supplier>();
         //s.add(supplier);
-        item.getSuppliers().add(supplier);
         //supplier.getItems().add(item);
         //item.setSuppliers(s);
         boolean checkItem = transactionServices.persistData(item);
         Assert.assertEquals(true, checkItem);
         
-        HashMap hm = new HashMap();
-        hm.put("username", "khanhduyhuynh");
-        hm.put("activationKey", "8a1aa529-586a-46f9-af52-4e1036671bc0");
-        User user = (User)transactionServices.findByManyConditions("select u from User u where u.username = :username and u.activationKey = :activationKey", hm);
-        Assert.assertNotNull(user);
+        
         //boolean check = mailservices.sendMail("khanhduyhuynhit@gmail.com", "Test", "Please check here");
         //Assert.assertEquals(true, check);
       /*  

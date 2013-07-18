@@ -10,7 +10,7 @@
      	<div id="topMessage">
             <h1>
                 <h:form>
-                    #{bundle.loginWelcomeMessage}: #{userController.user.username} | <p:commandButton value="#{bundle.logout}" action="#{userController.logOut()}" ajax="false" style="font-size: 20px;" />
+                    #{bundle.loginWelcomeMessage}: #{userController.user.username} | <p:commandLink value="#{bundle.logout}" action="#{userController.logOut()}" ajax="false" />
                 </h:form>
             </h1>
      	</div>

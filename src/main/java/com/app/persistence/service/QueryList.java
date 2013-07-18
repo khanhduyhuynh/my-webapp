@@ -29,7 +29,9 @@ public class QueryList implements IQueryList{
         hm.put("findCustomersBySupplier", "select c from Customer c where c.supplier.username = :supplier");
         
         //hm.put("findAllItems", "select i from Item i");
-        hm.put("findItemsBySupplier", "select i from Item i join i.suppliers s where s.username = :supplier");
+        hm.put("findItemSuppliersBySupplier", "select item_supplier from ItemSupplier item_supplier where item_supplier.itemSupplierKey.supplierId = :supplierId");
+        hm.put("findItemSupplierByItemAndSupplier", "select item_supplier from ItemSupplier item_supplier where item_supplier.itemSupplierKey.itemId = :itemId and item_supplier.itemSupplierKey.supplierId = :supplierId");
+        hm.put("findItemById", "select i from Item i where i.id = :itemId");
         hm.put("findItemByName", "select i from Item i where i.name = :name");
     }
     

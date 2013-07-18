@@ -9,6 +9,8 @@ import com.app.model.Admin;
 import com.app.model.BillingAddress;
 import com.app.model.Customer;
 import com.app.model.Item;
+import com.app.model.ItemSupplier;
+import com.app.model.ItemSupplierKey;
 import com.app.model.Profile;
 import com.app.model.ShippingAddress;
 import com.app.model.Supplier;
@@ -60,8 +62,11 @@ public class LoginServices implements ILoginServices{
             transactionDAO.persistData(customer);
             
             Item item = new Item("IPhone5", "This is the lastest model");
-            item.getSuppliers().add(supplier);
             transactionDAO.persistData(item);
+            
+            ItemSupplierKey itemSupplierKey = new ItemSupplierKey(item, supplier);
+            ItemSupplier itemSupplier = new ItemSupplier(itemSupplierKey, 10, 550.00);
+            transactionDAO.persistData(itemSupplier);
         }
 
     }
