@@ -7,6 +7,7 @@
         id="supplierUpdateDialogId" height="300" width="400" modal="true"
 	closable="true" draggable="false" resizable="false">
 	<h:form id="supplierUpdateDialogForm" prependId="false">
+<<<<<<< HEAD
             <p:panelGrid columns="2">
                 <h:outputText value="Business Name" />
                 <p:inputText value="#{supplierController.profile.businessName}" required="true" label="Business Name" />
@@ -16,6 +17,17 @@
                 
                 <h:outputText value="Phone" />
                 <p:inputText value="#{supplierController.supplier.phone}" required="true" label="Phone" />
+=======
+            <h:panelGrid columns="2">
+                <h:outputText value="Business Name" />
+                <h:inputText value="#{supplierController.profile.businessName}" required="true" label="Business Name" />
+                
+		<h:outputText value="Trading Name" />
+                <h:inputText value="#{supplierController.profile.tradingName}" required="true" label="Trading Name" />
+                
+                <h:outputText value="Phone" />
+                <h:inputText value="#{supplierController.supplier.phone}" required="true" label="Phone" />
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
                 
 		<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
                     action="#{supplierController.updateSupplier()}"
@@ -23,7 +35,11 @@
                     oncomplete="closeDialogIfSucess(xhr, status, args, supplierUpdateDialogWidget, 'supplierUpdateDialogId')" />
                 <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{supplierController.resetSupplier()}"
                     onclick="supplierUpdateDialogWidget.hide();" type="button" />
+<<<<<<< HEAD
             </p:panelGrid>
+=======
+            </h:panelGrid>
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         </h:form>
     </p:dialog>
 </h:body>

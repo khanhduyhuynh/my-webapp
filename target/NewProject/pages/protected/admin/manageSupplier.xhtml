@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core" 
+        xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <ui:composition template="/pages/templates/master.xhtml">
+	<ui:define name="divMain">
+            <h:form id="suppliersForm">
+                <p:dataTable id="suppliersTable" value="#{supplierController.suppliers}" var="supplier" emptyMessage="#{bundle.noRecords}" paginator="true" rows="10"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Username" />
+			</f:facet>
+
+                        <h:outputText value="#{supplier.username}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Business Name" />
+			</f:facet>
+
+                        <h:outputText value="#{supplier.profile.businessName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Trading Name" />
+			</f:facet>
+
+                        <h:outputText value="#{supplier.profile.tradingName}" />
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" update=":supplierDetailDialogForm" onclick="supplierDetailDialogWidget.show();" >
+                            <f:setPropertyActionListener target="#{supplierController.supplier}" value="#{supplier}" />
+			</p:commandButton> 
+			<p:spacer width="10px" />
+			<p:commandButton value="#{bundle.update}" icon="ui-icon-pencil" update=":supplierUpdateDialogForm" onclick="supplierUpdateDialogWidget.show();" >
+                            <f:setPropertyActionListener target="#{supplierController.supplier}" value="#{supplier}" />
+                            <f:setPropertyActionListener target="#{supplierController.profile}" value="#{supplier.profile}" />
+			</p:commandButton>
+			<p:spacer width="10px" />
+			<p:commandButton value="#{bundle.delete}" icon="ui-icon-trash" update=":supplierDeleteDialogForm" onclick="supplierDeleteDialogWidget.show();" >
+                            <f:setPropertyActionListener target="#{supplierController.supplier}" value="#{supplier}" />
+			</p:commandButton>
+                    </p:column>
+
+		</p:dataTable>
+                <p:commandButton value="#{bundle.create} #{bundle.supplier}" icon="ui-icon-plus" update=":supplierCreateDialogForm"
+                                 actionListener="#{supplierController.resetSupplier()}" onclick="supplierCreateDialogWidget.show();" />
+            </h:form>
+
+            <ui:include src="/pages/protected/admin/dialogs/supplierCreateDialog.xhtml" />
+            <ui:include src="/pages/protected/admin/dialogs/supplierDetailDialog.xhtml" />
+            <ui:include src="/pages/protected/admin/dialogs/supplierUpdateDialog.xhtml" />
+            <ui:include src="/pages/protected/admin/dialogs/supplierDeleteDialog.xhtml" />
+	</ui:define>	
+    </ui:composition>
+</h:body>
+</html>

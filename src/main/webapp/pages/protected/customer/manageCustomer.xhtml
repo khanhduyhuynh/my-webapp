@@ -10,6 +10,7 @@
             <h:form id="customersForm">
                 <p:dataTable id="customersTable" value="#{customerController.customers}" var="customer" emptyMessage="#{bundle.noRecords}" paginator="true" rows="10"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+<<<<<<< HEAD
                         rowsPerPageTemplate="5,10,15" tableStyle="width:auto">
                     
                     <p:column headerText="Username" filterBy="#{customer.username}" sortBy="#{customer.username}">
@@ -21,6 +22,27 @@
                     </p:column>
                     
                     <p:column headerText="Shipping Postcode" filterBy="#{customer.shippingAddress.postCode}" sortBy="#{customer.shippingAddress.postCode}">
+=======
+			rowsPerPageTemplate="5,10,15">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Username" />
+			</f:facet>
+                        <h:outputText value="#{customer.username}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Billing Post Code" />
+			</f:facet>
+                        <h:outputText value="#{customer.billingAddress.postCode}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Shipping Post Code" />
+			</f:facet>
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
                         <h:outputText value="#{customer.shippingAddress.postCode}" />
                     </p:column>
 

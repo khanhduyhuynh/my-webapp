@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.app.UserServicesTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.017 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.941 sec
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28

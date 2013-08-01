@@ -5,11 +5,25 @@
 package com.app.model;
 
 import java.io.Serializable;
+<<<<<<< HEAD
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+=======
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 import javax.persistence.Table;
 
 /**
@@ -75,5 +89,9 @@ public class Item implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 }

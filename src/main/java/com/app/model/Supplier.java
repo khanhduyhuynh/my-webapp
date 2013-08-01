@@ -12,6 +12,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+<<<<<<< HEAD
+=======
+import javax.persistence.ManyToMany;
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;

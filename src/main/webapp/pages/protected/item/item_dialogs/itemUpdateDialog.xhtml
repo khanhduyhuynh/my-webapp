@@ -1,8 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+<<<<<<< HEAD
 	xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
+=======
+	xmlns:p="http://primefaces.org/ui">
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 <h:body>
     <p:dialog widgetVar="itemUpdateDialogWidget"
         id="itemUpdateDialogId" height="300" width="400" modal="true"
@@ -10,6 +14,7 @@
 	<h:form id="itemUpdateDialogForm" prependId="false">
             <h:panelGrid columns="2">
                 <h:outputText value="Name" />
+<<<<<<< HEAD
                 <p:inputText value="#{itemController.item.name}" required="true" label="Name" />
                 
 		<h:outputText value="Description" />
@@ -20,6 +25,18 @@
                 
 		<h:outputText value="Price" />
                 <pe:inputNumber value="#{itemController.itemSupplier.price}" required="true" label="Price" symbol="$" />
+=======
+                <h:inputText value="#{itemController.item.name}" required="true" label="Name" />
+                
+		<h:outputText value="Description" />
+                <h:inputText value="#{itemController.item.description}" required="true" label="Description" />
+                
+                <h:outputText value="In Stock" />
+                <h:inputText value="#{itemController.itemSupplier.numInStock}" required="true" label="Number In Stock" />
+                
+		<h:outputText value="Price" />
+                <h:inputText value="#{itemController.itemSupplier.price}" required="true" label="Price" />
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
                 
 		<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
                     action="#{itemController.updateItem()}"
@@ -28,7 +45,10 @@
                 <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{itemController.resetItem()}"
                     onclick="itemUpdateDialogWidget.hide();" type="button" />
             </h:panelGrid>
+<<<<<<< HEAD
             <pe:keyFilter for="numInStockUpdate" mask="num"/>
+=======
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         </h:form>
     </p:dialog>
 </h:body>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite failures="0" time="3.016" errors="0" skipped="0" tests="1" name="com.app.UserServicesTest">
+=======
+<testsuite failures="0" time="2.941" errors="0" skipped="0" tests="1" name="com.app.UserServicesTest">
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -15,7 +19,11 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<<<<<<< HEAD
     <property name="user.dir" value="C:\Users\duy\Desktop\my-webapp-master"/>
+=======
+    <property name="user.dir" value="C:\Users\duy\Desktop\NewProject"/>
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
     <property name="java.runtime.version" value="1.7.0_25-b17"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_25\jre\lib\endorsed"/>
@@ -60,5 +68,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
+<<<<<<< HEAD
   <testcase time="2.644" classname="com.app.UserServicesTest" name="testPersistUser"/>
+=======
+  <testcase time="2.663" classname="com.app.UserServicesTest" name="testPersistUser"/>
+>>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 </testsuite>
