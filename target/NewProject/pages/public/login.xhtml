@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core" 
+        xmlns:p="http://primefaces.org/ui">
+    
+<h:body>
+    <ui:composition template="/pages/templates/master.xhtml">
+        <ui:define name="divTop">
+            <div id="topMessage"><h1>Welcome to our web site</h1></div>
+        </ui:define>
+        <ui:define name="divLeft">
+            
+        </ui:define>
+	<ui:define name="divMain">
+            <h:form>
+                <p:panelGrid columns="2">
+                    <f:facet name="header">  
+                        #{bundle.loginTitle}  
+                    </f:facet>
+                    <h:outputLabel value="#{bundle.loginUserName}" />
+                    <p:inputText value="#{loginController.username}" label="Username" id="username" required="true">
+                        <f:validateLength minimum="5" />
+                    </p:inputText>
+
+                    <h:outputLabel value="#{bundle.loginPassword}" />		
+                    <p:password value="#{loginController.password}" label="Password" id="password" required="true" autocomplete="off" >
+                        <f:validateLength minimum="5" />
+                    </p:password>
+                    <f:facet name="footer">  
+                        <p:commandButton action="#{loginController.validateLogin()}" value="Log in" ajax="false" />  
+                    </f:facet>	
+                </p:panelGrid>
+                <p:commandLink value="#{bundle.signUpSupplierLink}" actionListener="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" immediate="true" />
+            </h:form>
+            <ui:include src="/pages/public/supplierSignUp.xhtml" />
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

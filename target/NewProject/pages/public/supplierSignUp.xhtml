@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <p:dialog widgetVar="supplierCreateDialogWidget"
+	id="supplierCreateDialogId" height="650" width="450" modal="true"
+	closable="true" draggable="false" resizable="false">
+        <h:form id="supplierCreateDialogForm" prependId="false">
+            <p>#{bundle.signUpTitle}</p>
+    
+            <p:panelGrid columns="2">
+                <h:outputText value="Username:" />
+                <p:inputText value="#{supplierController.supplier.username}" required="true" label="Username" >
+			<f:validateLength minimum="5" />
+		</p:inputText>
+                
+		<h:outputText value="Password:" />
+                <p:password id="password" value="#{supplierController.supplier.password}" required="true" label="Password" match="confirm_password" validatorMessage="Password and confirm password must be matched" />
+		
+                <h:outputLabel value="Confirm Password :"/>
+                <p:password id="confirm_password" value="#{supplierController.supplier.password}" required="true" label="Confirm Password"/>
+                
+                <h:outputLabel value="First Name:" />
+                <p:inputText value="#{supplierController.supplier.firstName}" required="true" label="First Name" />
+                
+                <h:outputLabel value="Last Name:" />
+                <p:inputText value="#{supplierController.supplier.lastName}" required="true" label="Last Name" />
+                
+                <h:outputLabel value="Phone:" />
+                <p:inputText value="#{supplierController.supplier.phone}" required="true" label="Phone" />
+                
+                <h:outputLabel value="Email:" />
+                <p:inputText value="#{supplierController.supplier.email}" required="true" label="Email" validatorMessage="Email is not valid ! (you@yahoo.com)">
+                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                </p:inputText>
+                
+                <h:outputLabel value="Buusiness Name:" />
+                <p:inputText value="#{supplierController.profile.businessName}" required="true" label="Business Name" />
+                
+                <h:outputLabel value="Trading Name:" />
+                <p:inputText value="#{supplierController.profile.tradingName}" required="true" label="Trading Name" />
+                
+                <h:outputLabel value="Business Phone:" />
+                <p:inputText value="#{supplierController.profile.businessPhone}" required="true" label="Business Phone" />
+                
+                <h:outputLabel value="Business Email:" />
+                <p:inputText value="#{supplierController.profile.businessEmail}" required="true" label="Business Email" validatorMessage="Business email is not valid ! (you@yahoo.com)">
+                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                </p:inputText>
+                
+                <h:outputLabel value="Street :"/>
+                <p:inputText value="#{supplierController.address.street}" required="true" label="Street" />
+                            
+                <h:outputLabel value="Suburb :"/>
+                <p:inputText value="#{supplierController.address.suburb}" required="true" label="Suburb" />
+                            
+                <h:outputLabel value="State  :"/>
+                <p:inputText value="#{supplierController.address.state}" required="true" label="State" />
+                      
+                <h:outputLabel value="Post Code :"/>
+                <p:inputText value="#{supplierController.address.postCode}" required="true" label="Post Code" />
+                
+                <p:commandButton value="#{bundle.create}" icon="ui-icon-plus" 
+                    update=":messageGrowl" action="#{supplierController.createSupplier()}"
+                    oncomplete="closeDialogIfSucess(xhr, status, args, supplierCreateDialogWidget, 'supplierCreateDialogId')" />
+                <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{supplierController.resetSupplier()}"
+                    onclick="supplierCreateDialogWidget.hide();" type="button" />
+            </p:panelGrid>
+        
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>
