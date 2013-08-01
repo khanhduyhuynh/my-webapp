@@ -9,15 +9,8 @@ import com.app.persistence.service.ILoginServices;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-<<<<<<< HEAD
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-=======
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 import javax.servlet.http.HttpServletRequest;
 
 /**

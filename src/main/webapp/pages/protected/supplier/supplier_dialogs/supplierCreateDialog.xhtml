@@ -2,12 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-<<<<<<< HEAD
 	xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
-=======
-	xmlns:p="http://primefaces.org/ui">
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 <h:body>
     <p:dialog widgetVar="supplierCreateDialogWidget"
 	id="supplierCreateDialogId" height="600" width="400" modal="true"
@@ -15,7 +11,6 @@
 	<h:form id="supplierCreateDialogForm" prependId="false">
             <h:panelGrid columns="2">
                 <h:outputText value="Username:" />
-<<<<<<< HEAD
                 <p:inputText value="#{supplierController.supplier.username}" required="true" label="Username" >
 			<f:validateLength minimum="5" />
 		</p:inputText>
@@ -65,50 +60,6 @@
                       
                 <h:outputLabel value="Post Code :"/>
                 <p:inputText value="#{supplierController.address.postCode}" required="true" label="Post Code" />
-=======
-                <h:inputText value="#{supplierController.supplier.username}" required="true" label="Username" >
-			<f:validateLength minimum="5" />
-		</h:inputText>
-                
-		<h:outputText value="Password:" />
-                <h:inputSecret id="password" value="#{supplierController.supplier.password}" required="true" label="Password" />
-		
-                <h:outputLabel value="First Name:" />
-                <h:inputText value="#{supplierController.supplier.firstName}" required="true" label="First Name" />
-                
-                <h:outputLabel value="Last Name:" />
-                <h:inputText value="#{supplierController.supplier.lastName}" required="true" label="Last Name" />
-                
-                <h:outputLabel value="Phone:" />
-                <h:inputText value="#{supplierController.supplier.phone}" required="true" label="Phone" />
-                
-                <h:outputLabel value="Email:" />
-                <h:inputText value="#{supplierController.supplier.email}" required="true" label="Email" />
-                
-                <h:outputLabel value="Business Name:" />
-                <h:inputText value="#{supplierController.profile.businessName}" required="true" label="Business Name" />
-                
-                <h:outputLabel value="Trading Name:" />
-                <h:inputText value="#{supplierController.profile.tradingName}" required="true" label="Trading Name" />
-                
-                <h:outputLabel value="Business Phone:" />
-                <h:inputText value="#{supplierController.profile.businessPhone}" required="true" label="Business Phone" />
-                
-                <h:outputLabel value="Business Email:" />
-                <h:inputText value="#{supplierController.profile.businessEmail}" required="true" label="Business Email" />
-                
-                <h:outputLabel value="Street :"/>
-                <h:inputText value="#{supplierController.address.street}" required="true" label="Street" />
-                            
-                <h:outputLabel value="Suburb :"/>
-                <h:inputText value="#{supplierController.address.suburb}" required="true" label="Suburb" />
-                            
-                <h:outputLabel value="State  :"/>
-                <h:inputText value="#{supplierController.address.state}" required="true" label="State" />
-                      
-                <h:outputLabel value="Post Code :"/>
-                <h:inputText value="#{supplierController.address.postCode}" required="true" label="Post Code" />
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
                 
 		<p:commandButton value="#{bundle.create}" icon="ui-icon-plus"
                                  action="#{supplierController.createSupplier()}"
@@ -117,11 +68,8 @@
                 <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{supplierController.resetSupplier()}"
                     onclick="supplierCreateDialogWidget.hide();" type="button" />
             </h:panelGrid>
-<<<<<<< HEAD
             <pe:keyFilter for="phoneCreate" mask="num"/>
             <pe:keyFilter for="businessPhoneCreate" mask="num"/>
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 	</h:form>
     </p:dialog>
 </h:body>

@@ -7,7 +7,6 @@
         id="customerUpdateDialogId" height="300" width="400" modal="true"
 	closable="true" draggable="false" resizable="false">
 	<h:form id="customerUpdateDialogForm" prependId="false">
-<<<<<<< HEAD
             <p:panelGrid columns="2">
                 <h:outputText value="First Name" />
                 <p:inputText value="#{customerController.customer.firstName}" required="true" label="First Name" />
@@ -20,20 +19,6 @@
                 
                 <h:outputText value="Shipping Post Code" />
                 <p:inputText value="#{customerController.shippingAddress.postCode}" required="true" label="Shipping Post Code" />
-=======
-            <h:panelGrid columns="2">
-                <h:outputText value="First Name" />
-                <h:inputText value="#{customerController.customer.firstName}" required="true" label="First Name" />
-                
-		<h:outputText value="Last Name" />
-                <h:inputText value="#{customerController.customer.lastName}" required="true" label="Last Name" />
-                
-                <h:outputText value="Billing Post Code" />
-                <h:inputText value="#{customerController.billingAddress.postCode}" required="true" label="Billing Post Code" />
-                
-                <h:outputText value="Shipping Post Code" />
-                <h:inputText value="#{customerController.shippingAddress.postCode}" required="true" label="Shipping Post Code" />
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
                 
 		<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
                     action="#{customerController.updateCustomer()}"
@@ -41,11 +26,7 @@
                     oncomplete="closeDialogIfSucess(xhr, status, args, customerUpdateDialogWidget, 'customerUpdateDialogId')" />
                 <p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{customerController.resetCustomer()}"
                     onclick="customerUpdateDialogWidget.hide();" type="button" />
-<<<<<<< HEAD
             </p:panelGrid>
-=======
-            </h:panelGrid>
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         </h:form>
     </p:dialog>
 </h:body>

@@ -39,7 +39,6 @@ public class CustomerController extends AbstractController {
     private Customer customer;
     private List<Customer> customers = new ArrayList<Customer>();
     
-<<<<<<< HEAD
     private List<Customer> filteredCustomers;
 
     public List<Customer> getFilteredCustomers() {
@@ -50,8 +49,6 @@ public class CustomerController extends AbstractController {
         this.filteredCustomers = filteredCustomers;
     }
     
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
     private BillingAddress billingAddress;
     private ShippingAddress shippingAddress;
     private Supplier supplier;

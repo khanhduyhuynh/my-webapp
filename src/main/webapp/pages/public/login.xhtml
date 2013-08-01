@@ -5,25 +5,15 @@
         xmlns:f="http://java.sun.com/jsf/core" 
         xmlns:p="http://primefaces.org/ui">
     
-<<<<<<< HEAD
 <h:body>
     <ui:composition template="/pages/templates/master.xhtml">
         <ui:define name="divTop">
             <div id="topMessage"><h1>Welcome to our web site</h1></div>
-=======
-    <f:event listener="#{loginController.showMessage()}" type="preRenderView" />
-    
-<h:body>
-    <ui:composition template="/pages/templates/master.xhtml">
-        <ui:define name="divTop">
-            <h1>Welcome to our web site</h1>
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         </ui:define>
         <ui:define name="divLeft">
             
         </ui:define>
 	<ui:define name="divMain">
-<<<<<<< HEAD
             <h:form>
                 <p:panelGrid columns="2">
                     <f:facet name="header">  
@@ -45,29 +35,6 @@
                 <p:commandLink value="#{bundle.signUpSupplierLink}" actionListener="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" immediate="true" />
             </h:form>
             <ui:include src="/pages/public/supplierSignUp.xhtml" />
-=======
-            
-    <h:form>
-        
-        <p>#{bundle.loginTitle} | <p:commandLink value="#{bundle.signUpSupplierLink}" actionListener="#{supplierController.resetSupplier()}" oncomplete="supplierCreateDialogWidget.show();" update=":supplierCreateDialogForm" /></p>
-    </h:form>
-    <h:form>
-	<h:panelGrid columns="2">
-            <h:outputLabel value="#{bundle.loginUserName}" />
-                <h:inputText value="#{loginController.username}" label="Username" id="username" required="true">
-                <f:validateLength minimum="5" />
-            </h:inputText>
-            
-            <h:outputLabel value="#{bundle.loginPassword}" />		
-            <h:inputSecret value="#{loginController.password}" label="Password" id="password" required="true" autocomplete="off" >
-                <f:validateLength minimum="5" />
-            </h:inputSecret>	
-			
-	</h:panelGrid>
-        <p:commandButton action="#{loginController.validateLogin()}" value="Log in" ajax="false" />
-    </h:form>
-    <ui:include src="/pages/public/supplierSignUp.xhtml" />
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         </ui:define>
     </ui:composition>
 </h:body>

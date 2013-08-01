@@ -40,10 +40,7 @@ public class ItemController extends AbstractController {
     
     private ItemSupplier itemSupplier;
     private List<ItemSupplier> itemSuppliers = new ArrayList<ItemSupplier>();
-<<<<<<< HEAD
     private List<ItemSupplier> otherItemSuppliers = new ArrayList<ItemSupplier>();
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
     
     private Supplier supplier;
     
@@ -54,11 +51,8 @@ public class ItemController extends AbstractController {
 
         supplier = (Supplier)transactionServices.findByOneCondition(strQuery, "username", user.getUsername());
         
-<<<<<<< HEAD
         loadItems();
         loadOtherItems();
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
     }
     
     public void createItem() {
@@ -77,10 +71,7 @@ public class ItemController extends AbstractController {
                 displayInfoMessageToUser("Created With Success");
                 resetItem();
                 loadItems();
-<<<<<<< HEAD
                 //loadOtherItems();
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
             }
             catch(Exception e) {
                 keepDialogOpen();
@@ -94,7 +85,6 @@ public class ItemController extends AbstractController {
         }
     }
     
-<<<<<<< HEAD
     public void createExistedItem() {
         ItemSupplierKey itemSupplierKey = new ItemSupplierKey(item, supplier);
         ItemSupplier itemSupplierObj = new ItemSupplier(itemSupplierKey, itemSupplier.getNumInStock(), itemSupplier.getPrice());
@@ -106,8 +96,6 @@ public class ItemController extends AbstractController {
         loadOtherItems();
     }
     
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
     public void updateItem() {
         try {
             transactionServices.updateData(item);
@@ -127,20 +115,13 @@ public class ItemController extends AbstractController {
     
     public void deleteItem() {
         try {
-<<<<<<< HEAD
             //transactionServices.deleteData(item);
-=======
-            transactionServices.deleteData(item);
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
             transactionServices.deleteData(itemSupplier);
             closeDialog();
             displayInfoMessageToUser("Deleted With Success");
             resetItem();
             loadItems();
-<<<<<<< HEAD
             loadOtherItems();
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         }
         catch(Exception e) {
             keepDialogOpen();
@@ -148,7 +129,6 @@ public class ItemController extends AbstractController {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
     
     private void loadItems() {
         String strQuery = queryList.getQueryStr("findItemSuppliersBySupplier");
@@ -183,8 +163,6 @@ public class ItemController extends AbstractController {
         item = new Item();
         itemSupplier = new ItemSupplier();
     }
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 
     public ITransactionServices getTransactionServices() {
         return transactionServices;
@@ -202,7 +180,6 @@ public class ItemController extends AbstractController {
         this.queryList = queryList;
     }
     
-<<<<<<< HEAD
     public UserController getUserController() {
         return userController;
     }
@@ -210,8 +187,6 @@ public class ItemController extends AbstractController {
     public void setUserController(UserController userController) {
         this.userController = userController;
     }
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
     
     public Item getItem() {
         return item;
@@ -222,73 +197,16 @@ public class ItemController extends AbstractController {
     }
 
     public List<Item> getItems() {
-<<<<<<< HEAD
-=======
-        if(item == null) {
-            loadItems();
-        }
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         return items;
     }
 
     public void setItems(List<Item> items) {
         this.items = items;
     }
-<<<<<<< HEAD
-=======
-    
-    private void loadItems()
-    {
-        String strQuery = queryList.getQueryStr("findItemSuppliersBySupplier");
-        HashMap hm = new HashMap();
-        hm.put("supplierId", supplier.getId());
-        itemSuppliers = transactionServices.findAllByCondition(strQuery, hm);
-        
-        items.clear();
-        strQuery = queryList.getQueryStr("findItemById");
-        for(ItemSupplier item_supplier : itemSuppliers) {
-            Item itemObj = (Item)transactionServices.findByOneCondition(strQuery, "itemId", item_supplier.getItemSupplierKey().getItemId());
-            items.add(itemObj);
-        }
-    }
-    
-    public void resetItem() {
-        item = new Item();
-        itemSupplier = new ItemSupplier();
-    }
-
-    public UserController getUserController() {
-        return userController;
-    }
-
-    public void setUserController(UserController userController) {
-        this.userController = userController;
-    }
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 
     public ItemSupplier getItemSupplier() {
         return itemSupplier;
     }
-<<<<<<< HEAD
-=======
-    
-    public ItemSupplier returnItemSupplier(Item i) {
-        String strQuery = queryList.getQueryStr("findItemSupplierByItemAndSupplier");
-        HashMap hm = new HashMap();
-        hm.put("itemId", i.getId());
-        hm.put("supplierId", supplier.getId());
-        ItemSupplier itemSupplierObj = (ItemSupplier)transactionServices.findByManyConditions(strQuery, hm);
-        return itemSupplierObj;
-    }
-    
-    public int returnItemSupplierNumInStock(Item i) {
-        return returnItemSupplier(i).getNumInStock();
-    }
-    
-    public double returnItemSupplierPrice(Item i) {
-        return returnItemSupplier(i).getPrice();
-    }
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 
     public void setItemSupplier(ItemSupplier itemSupplier) {
         this.itemSupplier = itemSupplier;
@@ -302,7 +220,6 @@ public class ItemController extends AbstractController {
         this.itemSuppliers = itemSuppliers;
     }
 
-<<<<<<< HEAD
     public List<ItemSupplier> getOtherItemSuppliers() {
         return otherItemSuppliers;
     }
@@ -311,6 +228,4 @@ public class ItemController extends AbstractController {
         this.otherItemSuppliers = otherItemSuppliers;
     }
 
-=======
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
 }

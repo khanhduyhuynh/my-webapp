@@ -90,11 +90,7 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         Address address = new Address("2 Surrey St", "Marrickville", "2204", "NSW");
         boolean checkAddress = transactionServices.persistData(address);
         Assert.assertEquals(true, checkAddress);
-<<<<<<< HEAD
       /*  
-=======
-        
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         Profile profile = new Profile("ABC1 Company", "ABC1 Company", "0406051784", "abccompany@gmail.com");
         profile.setAddress(address);
         boolean checkProfile = transactionServices.persistData(profile);
@@ -112,11 +108,7 @@ public class UserServicesTest extends AbstractTransactionalJUnit4SpringContextTe
         //item.setSuppliers(s);
         boolean checkItem = transactionServices.persistData(item);
         Assert.assertEquals(true, checkItem);
-<<<<<<< HEAD
       */  
-=======
-        
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         
         //boolean check = mailservices.sendMail("khanhduyhuynhit@gmail.com", "Test", "Please check here");
         //Assert.assertEquals(true, check);

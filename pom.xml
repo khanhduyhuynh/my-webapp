@@ -118,7 +118,6 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-<<<<<<< HEAD
             <version>3.2</version>
         </dependency>
         
@@ -126,9 +125,6 @@
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
             <version>0.6.2</version>
-=======
-            <version>3.4</version>
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
         </dependency>
         
         <dependency>

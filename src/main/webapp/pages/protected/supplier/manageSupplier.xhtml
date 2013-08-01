@@ -10,7 +10,6 @@
             <h:form id="suppliersForm">
                 <p:dataTable id="suppliersTable" value="#{supplierController.suppliers}" var="supplier" emptyMessage="#{bundle.noRecords}" paginator="true" rows="10"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-<<<<<<< HEAD
 			rowsPerPageTemplate="5,10,15" tableStyle="width:auto">
                     <p:column headerText="Username" filterBy="#{supplier.username}" sortBy="#{supplier.username}">
                         <h:outputText value="#{supplier.username}" />
@@ -19,28 +18,6 @@
                         <h:outputText value="#{supplier.profile.businessName}" />
                     </p:column>
                     <p:column headerText="Trading Name" filterBy="#{supplier.profile.tradingName}" sortBy="#{supplier.profile.tradingName}">
-=======
-			rowsPerPageTemplate="5,10,15">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Username" />
-			</f:facet>
-
-                        <h:outputText value="#{supplier.username}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Business Name" />
-			</f:facet>
-
-                        <h:outputText value="#{supplier.profile.businessName}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Trading Name" />
-			</f:facet>
-
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
                         <h:outputText value="#{supplier.profile.tradingName}" />
                     </p:column>
 

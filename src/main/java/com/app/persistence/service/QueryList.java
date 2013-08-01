@@ -29,18 +29,11 @@ public class QueryList implements IQueryList{
         hm.put("findCustomersBySupplier", "select c from Customer c where c.supplier.username = :supplier");
         
         //hm.put("findAllItems", "select i from Item i");
-<<<<<<< HEAD
         hm.put("findItemSuppliersBySupplier", "select item_supplier from ItemSupplier item_supplier where item_supplier.itemSupplierKey.supplier.id = :supplierId");
         hm.put("findItemSupplierByItemAndSupplier", "select item_supplier from ItemSupplier item_supplier where item_supplier.itemSupplierKey.item.id = :itemId and item_supplier.itemSupplierKey.supplier.id = :supplierId");
         hm.put("findItemById", "select i from Item i where i.id = :itemId");
         hm.put("findItemByName", "select i from Item i where i.name = :name");
         hm.put("findOtherItemSuppliers", "select item_supplier from ItemSupplier item_supplier where item_supplier.itemSupplierKey.item.id NOT IN (select item_supplier_table.itemSupplierKey.item.id from ItemSupplier item_supplier_table where item_supplier_table.itemSupplierKey.supplier.id = :supplierId)");
-=======
-        hm.put("findItemSuppliersBySupplier", "select item_supplier from ItemSupplier item_supplier where item_supplier.itemSupplierKey.supplierId = :supplierId");
-        hm.put("findItemSupplierByItemAndSupplier", "select item_supplier from ItemSupplier item_supplier where item_supplier.itemSupplierKey.itemId = :itemId and item_supplier.itemSupplierKey.supplierId = :supplierId");
-        hm.put("findItemById", "select i from Item i where i.id = :itemId");
-        hm.put("findItemByName", "select i from Item i where i.name = :name");
->>>>>>> 3c849adb0561eb95902fd0446094045dde6c0a28
     }
     
     public String getQueryStr(String strKey) {
